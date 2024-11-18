@@ -16,7 +16,7 @@ export default function Cabecalho(){
                 <Link href="">CONSUMO MENSAL</Link>
                 <Link href="">SIMULAÇÃO</Link>
                 <Link href="">SOBRE NÓS</Link>
-                <Link href="">GAMES</Link>
+                <Link href="/games">GAMES</Link>
             </nav>
             <div className="opcoes">
                 <Link href=""><Image src={ranking} alt="icone do ranking"/></Link>
