@@ -239,7 +239,13 @@ export const ContainerDestaqueGame = styled.div`
 
     .btn{
         cursor: pointer;
+        transition: transform 0.3s ease;
     }
+
+    .btn:hover{
+        transform: translateY(10px);
+    }
+
 
     p{
         font-size: 38px;
