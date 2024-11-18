@@ -30,7 +30,7 @@ export default function Rodape(){
                         <Link href="">Sobre Nós</Link>
                     </li>
                     <li className="opcoes">
-                        <Link href="">Games</Link>
+                        <Link href="/games">Games</Link>
                     </li>
                 </ul> 
             </section>
