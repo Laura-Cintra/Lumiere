@@ -5,7 +5,7 @@ export const HeaderStyle = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    font-family: "Electrolize", sans-serif;
+    font-family: "Chakra Petch", sans-serif;
 
     img{
         max-width: 92px;
@@ -28,103 +28,12 @@ export const HeaderStyle = styled.header`
     }
 `
 
-export const HeroStyle = styled.section`
-
-    background: url();
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    text-align: center;
-    padding: 100px 20px;
-
-    .hero-content{
-        padding-top: 20px;
-        padding-bottom: 80px;
-        width: 75%;
-        margin: 0 auto;
-        background-color: rgba(0,0,0,0.5);
-        border-radius: 50px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.5em;
-        margin-bottom: 10px;
-    }
-
-    .hero-content p {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-    }
-
-    .hero-content button {
-        background-color: #D7BA58;
-        border: none;
-        margin-top: 20px;
-        padding: 15px 25px;
-        border-radius: 10px;
-        font-size: 1.2em;
-    }
-
-    .hero-content button a{
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .hero-content button:hover{
-        background-color: #06303A;
-    }
-`
-
-export const FooterStyle = styled.footer`
-
-    margin-top: 30px;
-    max-height: 184px;
-    width: 100%;
-    background-color: #5D98A4;
-    text-align: center;
-    font-family: "Electrolize", sans-serif;
-
-    img{
-        margin-top: 10px;
-        margin-left: 16px;
-    }
-
-    ul{
-        margin-top: 10px;
-        font-size: 14px;
-    }
-
-    li {
-        display: inline-block;
-        padding-left: 10px;
-    }
-    a {
-        text-decoration: none;
-        color: #fff;
-    }
-
-    #copyright img{
-        margin: 0;
-        padding-top: 2px;
-    }
-
-    #copyright p{
-        display: inline-block;
-        color: #B7B4BF;
-        font-size: 14px;
-        margin-left: 2px;
-    }
-    #copyright{
-        margin-top: 10px;
-    }
-
-`
-
-import fundo from "@/assets/fundohero.png";
+import fundo from "@/assets/inicial/fundohero.png";
+import { RankingCardProps } from "@/types";
 
 export const HomeStyle = styled.main`
 
-  font-family: "Kameron", serif;
+font-family: "Chakra Petch", sans-serif;
 
   .hero{
     width: 100%;
@@ -147,7 +56,7 @@ export const HomeStyle = styled.main`
     h1{
         font-size: 3rem;
         margin-bottom: 1rem;
-        font-family: "Orbitron", sans-serif;
+        font-family: "Chakra Petch", sans-serif;
     }
 
     p{
@@ -191,10 +100,64 @@ export const HomeStyle = styled.main`
   .heroSeta:hover {
     transform: translateY(20%) translateX(-50%);;
   }
+
+  h2 {
+    font-size: 2rem;
+    color: #222;
+    text-align: center;
+    padding: 50px 20px 30px 20px;
+
+    span {
+      color: #f7c945;
+    }
+  }
+
+  h3 {
+      font-size: 1.8rem;
+      color: #111;
+      margin-bottom: 1.3rem;
+      border-bottom: 4px solid #f7c945;
+      display: inline-block;
+    }
+
+    h4 > span{
+        color: #5D98A4;
+        padding: 10px;
+    }
+
+    h4, h5{
+        text-align: center;
+        padding: 10px;
+    }
+
+    h4{
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+    }
+
+    h5{
+        font-size: 1.2rem;
+        font-weight: 400;   
+    }
+
+    @media (max-width: 768px) {
+        h2{
+            font-size: 2.2rem;
+
+            span{
+                display: block;
+            }
+        }
+
+        h4{
+            font-size: 1.9rem;
+            letter-spacing: 2px;
+        }
+    }
 `;
 
 export const TituloStyle = styled.h1`
-    font-family: "Orbitron", sans-serif;
+    font-family: "Chakra Petch", sans-serif;
     font-weight: bold;
     font-size: 45px;
     text-align: center;
@@ -203,7 +166,7 @@ export const TituloStyle = styled.h1`
 `
 
 export const SubTituloStyle = styled.h2`
-    font-family: "Orbitron", sans-serif;
+    font-family: "Chakra Petch", sans-serif;
     font-weight: bold;
     font-size: 42px;
     text-align: center;
@@ -249,7 +212,7 @@ export const ContainerDestaqueGame = styled.div`
 
     p{
         font-size: 38px;
-        font-family: 'Kameron', serif ;
+        font-family: "Montserrat", sans-serif;
         width: 400px;
     }
     .explicacao-itens{
@@ -294,7 +257,7 @@ export const CategoriaButton = styled.button<{ isSelected: boolean }>`
    border: none;
    padding: 10px 20px;
    font-size: 26px;
-   font-family: 'Kameron', serif ;
+   font-family: "Montserrat", sans-serif;
    cursor: pointer;
    color: ${({ isSelected }) => (isSelected ? '#021639' : '#000')};
    font-weight: ${({ isSelected }) => (isSelected ? 'bold' : 'normal')};
@@ -329,7 +292,7 @@ export const CardGameStyle = styled.div`
    margin-bottom: 26px;
 
    .categoria{
-        font-family: 'Kameron', serif;
+        font-family: "Montserrat", sans-serif;
         background-color: #D7BA58;
         border-radius: 15px;
         width: 43px;
@@ -339,7 +302,7 @@ export const CardGameStyle = styled.div`
    }
 
    h2{
-    font-family: "Orbitron", sans-serif;
+    font-family: "Chakra Petch", sans-serif;
     font-weight: 600;   
     margin-top: 10px;
     padding: 8px;
@@ -368,7 +331,7 @@ export const CardDicaStyle = styled.div`
     }
 
     .categoria {
-        font-family: 'Kameron', serif;
+        font-family: "Montserrat", sans-serif;
         background-color: #5D98A4;
         border-radius: 15px;
         width: 60px;
@@ -399,7 +362,7 @@ export const CardDicaStyle = styled.div`
     }
 
     h2 {
-        font-family: "Orbitron", sans-serif;
+        font-family: "Chakra Petch", sans-serif;
         font-weight: 600;   
         margin: 35px 0 10px; 
         padding: 0;
@@ -412,7 +375,7 @@ export const CardDicaStyle = styled.div`
     }
 
     p {
-        font-family: 'Kameron', serif;
+        font-family: "Montserrat", sans-serif;
         color: #302F2F;
     }
 
@@ -440,3 +403,402 @@ export const CardDicaStyle = styled.div`
     }
 `;
 
+export const SlideStyle = styled.section`
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+`;
+
+export const TextContainer = styled.div`
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+
+  p {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+  }
+`;
+
+export const Carrossel = styled.div`
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .carousel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .control {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #f7c945;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #333;
+      }
+    }
+
+    .slide {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+
+  .indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 8px;
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &.active {
+        background-color: #f7c945;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    img{
+        width: 300px;
+        height: 200px;
+    }
+  }
+`;
+
+export const RankingCardContainer = styled.div<Pick<RankingCardProps, "height" | "posicao">>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 1rem;
+  height: auto;
+  width: 120px;
+  gap: 1rem;
+
+  h5{
+    font-size: 1.3rem;
+  }
+
+  .ranking-box {
+    background-color: ${({ posicao }) => {
+      if (posicao === 1) return "#5D98A4";
+      if (posicao === 2) return "#698186";
+      return "#91A8AD";
+    }};
+    color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    width: ${({ posicao }) => (posicao === 1 ? "160px" : posicao === 2 ? "140px" : "120px")};
+    bottom: 0;
+    height: ${({ height }) => `${parseInt(height) - (-10)}px`};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .rank-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .prize-text {
+    font-size: 0.85rem;
+  }
+
+  .user-image {
+    border-radius: 50%;
+    border: solid 2px black;
+    margin-bottom: -10px;
+  }
+
+  .points span {
+    color: #FDB813;
+    font-weight: bold;
+  }
+`;
+
+export const RankingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 2rem;
+  height: auto;
+  overflow: 1;
+  margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+`;
+
+export const OdsContainer = styled.div`
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center; 
+    
+    .container{
+        text-align: center;
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .imagem_ods{
+        margin-top: 30px;
+    }
+
+    p{
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    .titulo{
+        margin-top: 60px;
+        font-size: 2rem;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .subtitulo{
+        width: 200px;
+        font-size: 1.2rem;
+        margin: 0 auto;
+        margin-top: 15px;
+        height: 50px;
+    }
+    .ods{ 
+        text-align: center;
+    }
+    .iconeraio1{
+        color:   #FFC400;
+    }
+    .iconeraio2{
+        color:  #BF8C2B;
+    }
+`;
+
+export const SobreStyle = styled.main`
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-family: "Chakra Petch", sans-serif;
+
+    h1, h2{
+        font-size: 2rem;
+        color: #222;
+        text-align: center;
+        padding: 50px 20px 30px 20px;
+    }
+
+    .introducao {
+        font-size: 1.25rem;
+        color: #333;
+        line-height: 1.6;
+        max-width: 80%;
+        text-align: justify;
+        margin: 0 auto;
+    }
+
+    .container-compromissos{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        @media (max-width: 768px) {
+            flex-wrap: wrap;
+        }
+    }
+
+    .container-compromissos{
+        font-size: 1.1rem;
+        color: #333;
+        line-height: 1.6;
+        max-width: 75%;
+        margin: 0 auto;
+    }
+`;
+
+export const ParticipantesStyle = styled.div`
+    margin: 40px auto 50px auto;
+    background-color: #F3F4F6;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content:space-around;
+    text-align: start;
+    font-family: "Montserrat", sans-serif;
+
+    .container{
+        max-width: 278px;
+        height: 79px;
+        border-radius: 20px;
+        background-color: #B7D5E5;
+        padding: 10px;
+        position: absolute;
+        margin-left: 70px; 
+        margin-top:-55px;
+        box-shadow: 5px 5px 2px #021639;
+    }
+
+    #part1, #part2, #part3{
+        position: relative;
+        margin-left: 25px;
+        padding-right: 30px;
+        margin-right: 10px;
+        justify-content: space-evenly;
+    }
+
+    .icons{
+        display: flex;
+        margin-top: -20px;
+        margin-left: 190px;
+    }
+
+    .icons :nth-child(2){
+        margin-right: 10px;
+        padding-left: 5px;
+    }
+
+    .infos{
+        display: inline-block;
+        width: 200px;
+    }
+    .infos h3{
+        font-size: 20px;
+        color:#012E40;
+    }
+    .infos p{
+        margin-top: 5px;
+        font-size:16px;
+        color:#797979;
+    }
+
+    @media screen and (max-width:1086px) {
+        .container{
+            max-width: 252.53px;
+            height: 69px;
+        }
+        .foto{
+            width: 280px;
+            height: 280px;
+        }
+        .infos{
+            margin-left: -15px;
+        }
+        .infos h3{
+            font-size: 20px;
+            padding-left: 15px;
+            color:#012E40;
+        }
+        .infos p{
+            font-size:14px;
+            padding-left: 15px;
+            color:#797979;
+        }
+        .icons{
+            margin-left: 140px;
+            margin-top: -25px;
+        }
+    }
+
+    @media screen and (max-width:700px) {
+        .icons{
+            margin-left: 150px;
+            margin-top: -25px;
+        }
+
+        #part1, #part2, #part3{
+            padding-top: 30px;
+        }
+    }
+`
+
+export const CirclesStyle = styled.div`
+    .circles{
+            display: flex;
+            justify-content: space-between;
+        }
+`
+
+export const FooterStyle = styled.footer`
+
+    margin-top: 30px;
+    max-height: 184px;
+    width: 100%;
+    background-color: #5D98A4;
+    text-align: center;
+    font-family: "Chakra Petch", sans-serif;
+
+    img{
+        margin-top: 10px;
+        margin-left: 16px;
+    }
+
+    ul{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    li {
+        display: inline-block;
+        padding-left: 10px;
+    }
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    #copyright img{
+        margin: 0;
+        padding-top: 2px;
+    }
+
+    #copyright p{
+        display: inline-block;
+        color: #B7B4BF;
+        font-size: 14px;
+        margin-left: 2px;
+    }
+    #copyright{
+        margin-top: 10px;
+    }
+`

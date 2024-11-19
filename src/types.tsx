@@ -8,3 +8,13 @@ export type ConteudoProps = {
     descricao?: string;
     dica?: string;
 };
+
+export type RankingCardProps = {
+    posicao: number;
+    nome: string;
+    foto: StaticImageData | string;
+    medalha: StaticImageData | string;
+    pontos: number;
+    height: string;
+    premio: string;
+};
