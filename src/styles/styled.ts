@@ -75,52 +75,8 @@ export const HeroStyle = styled.section`
     }
 `
 
-export const FooterStyle = styled.footer`
-
-    margin-top: 30px;
-    max-height: 184px;
-    width: 100%;
-    background-color: #5D98A4;
-    text-align: center;
-    font-family: "Electrolize", sans-serif;
-
-    img{
-        margin-top: 10px;
-        margin-left: 16px;
-    }
-
-    ul{
-        margin-top: 10px;
-        font-size: 14px;
-    }
-
-    li {
-        display: inline-block;
-        padding-left: 10px;
-    }
-    a {
-        text-decoration: none;
-        color: #fff;
-    }
-
-    #copyright img{
-        margin: 0;
-        padding-top: 2px;
-    }
-
-    #copyright p{
-        display: inline-block;
-        color: #B7B4BF;
-        font-size: 14px;
-        margin-left: 2px;
-    }
-    #copyright{
-        margin-top: 10px;
-    }
-
-`
-
 import fundo from "@/assets/fundohero.png";
+import { RankingCardProps } from "@/types";
 
 export const HomeStyle = styled.main`
 
@@ -191,6 +147,65 @@ export const HomeStyle = styled.main`
   .heroSeta:hover {
     transform: translateY(20%) translateX(-50%);;
   }
+
+  h2 {
+    font-size: 2rem;
+    color: #222;
+    text-align: center;
+    padding: 50px 20px 30px 20px;
+
+    span {
+      color: #f7c945;
+    }
+  }
+
+  h3 {
+      font-size: 1.8rem;
+      color: #111;
+      margin-bottom: 1.3rem;
+      border-bottom: 4px solid #f7c945;
+      display: inline-block;
+    }
+
+    h4 > span{
+        color: #5D98A4;
+        padding: 10px;
+    }
+
+    h4, h5{
+        text-align: center;
+        padding: 10px;
+    }
+
+    h4{
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+    }
+
+    h5{
+        font-size: 1.2rem;
+        font-weight: 400;   
+    }
+
+    .circles{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+        h2{
+            font-size: 2.2rem;
+
+            span{
+                display: block;
+            }
+        }
+
+        h4{
+            font-size: 1.9rem;
+            letter-spacing: 2px;
+        }
+    }
 `;
 
 export const TituloStyle = styled.h1`
@@ -440,3 +455,261 @@ export const CardDicaStyle = styled.div`
     }
 `;
 
+// ============================================
+
+export const SlideStyle = styled.section`
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+`;
+
+export const TextContainer = styled.div`
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+
+  p {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+  }
+`;
+
+export const Carrossel = styled.div`
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .carousel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .control {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #f7c945;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #333;
+      }
+    }
+
+    .slide {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+
+  .indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 8px;
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &.active {
+        background-color: #f7c945;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    img{
+        width: 300px;
+        height: 200px;
+    }
+  }
+`;
+
+// ==========================================================
+
+export const RankingCardContainer = styled.div<Pick<RankingCardProps, "height" | "posicao">>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 1rem;
+  height: auto;
+  width: 120px;
+  gap: 1rem;
+
+  h5{
+    font-size: 1.3rem;
+  }
+
+  .ranking-box {
+    background-color: ${({ posicao }) => {
+      if (posicao === 1) return "#f7c945";
+      if (posicao === 2) return "#c0c0c0";
+      return "#cd7f32";
+    }};
+    color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    width: ${({ posicao }) => (posicao === 1 ? "160px" : posicao === 2 ? "140px" : "120px")};
+    bottom: 0;
+    height: ${({ height }) => `${parseInt(height) - (-10)}px`};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .rank-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .prize-text {
+    font-size: 0.85rem;
+  }
+
+  .user-image {
+    border-radius: 50%;
+    border: solid 2px black;
+    margin-bottom: -10px;
+  }
+
+  .points span {
+    color: #FDB813;
+    font-weight: bold;
+  }
+`;
+
+export const RankingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 2rem;
+  height: auto;
+  overflow: 1;
+  margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+`;
+
+export const OdsContainer = styled.div`
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center; 
+    
+    .container{
+        text-align: center;
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .imagem_ods{
+        margin-top: 30px;
+    }
+
+    p{
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    .titulo{
+        margin-top: 60px;
+        font-size: 2rem;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .subtitulo{
+        width: 200px;
+        font-size: 1.2rem;
+        margin: 0 auto;
+        margin-top: 15px;
+        height: 50px;
+    }
+    .ods{ 
+        text-align: center;
+    }
+    .iconeraio1{
+        color:   #FFC400;
+    }
+    .iconeraio2{
+        color:  #BF8C2B;
+    }
+`;
+
+export const FooterStyle = styled.footer`
+
+    margin-top: 30px;
+    max-height: 184px;
+    width: 100%;
+    background-color: #5D98A4;
+    text-align: center;
+    font-family: "Electrolize", sans-serif;
+
+    img{
+        margin-top: 10px;
+        margin-left: 16px;
+    }
+
+    ul{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    li {
+        display: inline-block;
+        padding-left: 10px;
+    }
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    #copyright img{
+        margin: 0;
+        padding-top: 2px;
+    }
+
+    #copyright p{
+        display: inline-block;
+        color: #B7B4BF;
+        font-size: 14px;
+        margin-left: 2px;
+    }
+    #copyright{
+        margin-top: 10px;
+    }
+
+`
