@@ -16,7 +16,7 @@ export default function Cabecalho(){
             <nav>
                 <Link href="">CONSUMO MENSAL</Link>
                 <Link href="">SIMULAÇÃO</Link>
-                <Link href="">SOBRE NÓS</Link>
+                <Link href="/sobre-nos">SOBRE NÓS</Link>
                 <Link href="/games">GAMES</Link>
             </nav>
             <div className="opcoes">

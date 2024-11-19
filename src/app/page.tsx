@@ -1,25 +1,28 @@
 "use client"
 
 import { Carrossel, HomeStyle, OdsContainer, RankingContainer, SlideStyle, TextContainer } from "@/styles/styled";
-import seta from "@/assets/down_arrow.png"
-import ods1 from "@/assets/ods1.png"
-
-import ods2 from "@/assets/ods2.png"
 import { MdBolt } from "react-icons/md";
-
-import Image from "next/image";
-import lampada from "@/assets/lamp.png";
-import ouro from "@/assets/medalha_ouro.png";
-import menina from "@/assets/menina.png"
-import circle_esquerda from "@/assets/circle-left.png"
-import circle_direita from "@/assets/circle-right.png"
-
-import fundo from "@/assets/fundohero.png";
+import { MdLeaderboard } from "react-icons/md";
 import { useState } from "react";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
-import { MdLeaderboard } from "react-icons/md";
+import Image from "next/image";
 import RankingCard from "./components/RankingCard";
 import { RankingCardProps } from "@/types";
+import Link from "next/link";
+
+// imagens
+import ods1 from "@/assets/inicial/ods1.png"
+import ods2 from "@/assets/inicial/ods2.png"
+import seta from "@/assets/inicial/down_arrow.png"
+import lampada from "@/assets/inicial/lamp.png";
+import ouro from "@/assets/inicial/medalha_ouro.png";
+import prata from "@/assets/inicial/medalha_prata.png";
+import bronze from "@/assets/inicial/medalha_bronze.png";
+import menina from "@/assets/inicial/menina.png"
+import menina2 from "@/assets/inicial/menina2.png"
+import menino from "@/assets/inicial/menino.png"
+import fundo from "@/assets/inicial/fundohero.png";
+
 
 const slides = [
   { text: "Energia renovável é a chave para o futuro!", image: lampada },
@@ -40,16 +43,16 @@ export default function Home() {
   const rankings: RankingCardProps[] = [
     {
       posicao: 2,
-      nome: "Luana",
-      foto: menina,
-      medalha: ouro,
+      nome: "Pedroca",
+      foto: menino,
+      medalha: prata,
       pontos: 820,
       height: "160px",
       premio: "Desconto de 20% em sites parceiros",
     },
     {
       posicao: 1,
-      nome: "Pedroca",
+      nome: "Luana",
       foto: menina,
       medalha: ouro,
       pontos: 1000,
@@ -59,8 +62,8 @@ export default function Home() {
     {
       posicao: 3,
       nome: "Carol",
-      foto: menina,
-      medalha: ouro,
+      foto: menina2,
+      medalha: bronze,
       pontos: 750,
       height: "140px",
       premio: "Ingresso para stand-up",
@@ -73,14 +76,14 @@ export default function Home() {
         <div className="heroConteudo">
           <h1>Lumière</h1>
           <p>Se beneficie sendo consciente</p>
-          <button><a href="#">SAIBA MAIS</a></button>
+          <button><Link href="#conteudo">SAIBA MAIS</Link></button>
         </div>
         <button className="heroSeta">
-          <a href="#"><Image src={seta} alt="seta para baixo"/></a>
+          <Link href="#conteudo"><Image src={seta} alt="seta para baixo"/></Link>
         </button>
       </section>
 
-      <h2>Energia para um <span>Futuro Sustentável</span></h2>
+      <h2 id="conteudo">Energia para um <span>Futuro Sustentável</span></h2>
       <SlideStyle>
         <TextContainer>
           <h3>Você sabia?</h3>
@@ -115,7 +118,7 @@ export default function Home() {
         </Carrossel>
       </SlideStyle>
 
-    <div className="titulo_ranking">
+    <div>
       <h4><span><MdLeaderboard /></span>Ranking Sustentável<span><MdLeaderboard /></span></h4>
       <h5>Veja os usuários com o consumo mais consciente do mês!</h5>
     </div>
@@ -134,7 +137,7 @@ export default function Home() {
         />
       ))}
     </RankingContainer>
-    <div className="titulo_ods">
+    <div>
       <h4>ODS&apos;s que defendemos</h4>
     </div>
     <OdsContainer>
@@ -159,9 +162,5 @@ export default function Home() {
         </div>
       </div>
     </OdsContainer>
-    <div className="circles">
-    <Image src={circle_esquerda} alt="elemento visual" width={130} height={130}/>
-    <Image src={circle_direita} alt="elemento visual" width={130} height={130}/>
-    </div>
     </HomeStyle>
   )}
