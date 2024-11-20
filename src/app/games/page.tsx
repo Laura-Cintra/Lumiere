@@ -28,7 +28,7 @@ const conteudos:ConteudoProps[] = [
     { id: 2, imagem: quiz2, titulo: "Sua casa é sustentável?" , categoria: "quiz"},
     { id: 3, imagem: quiz3, titulo: "Você é um defensor da energia verde?" , categoria: "quiz"},
     { id: 4, imagem: dica1, titulo: "Reduzir o tempo do banho" , categoria: "dicas", descricao:"Diminuir 5 minutos no tempo do banho", dica:"economize até R$11,65 por mês e 13,71 kWh de energia!"},
-    { id: 5, imagem: dica2, titulo: "Usar lâmpadas LED" , categoria: "dicas", descricao:"Substituir lâmpadas incandescentes por LED", dica:"corte até 80% do consumo de iluminação da sua casa."},
+    { id: 5, imagem: dica2, titulo: "Usar lâmpadas LED" , categoria: "dicas", descricao:"Substituir lâmpadas incandescentes.", dica:"corte até 80% do consumo de iluminação da sua casa."},
     { id: 6, imagem: dica3, titulo: "Evitar o modo standby" , categoria: "dicas", descricao:"Desligar aparelhos em standby", dica:"elimine até 12% da sua conta de luz mensal."},
 ]
 

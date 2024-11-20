@@ -7,7 +7,7 @@ export const HeaderStyle = styled.header`
     padding: 10px 20px;
     font-family: "Chakra Petch", sans-serif;
 
-    img{
+    img {
         max-width: 92px;
         max-height: 110px;
     }
@@ -17,16 +17,65 @@ export const HeaderStyle = styled.header`
         gap: 40px;
     }
 
-    nav a, .opcoes a {
-        color: #06303A;
+    #abas-navegacao {
+        z-index: 2;
+        transition: margin-left 0.3s ease;
+        filter: none;
+    }
+
+    nav a,
+    .opcoes a {
+        color: #06303a;
         text-decoration: none;
     }
 
-    .opcoes{
+    .btn_icon_header {
+        background: transparent;
+        border: none;
+        color: #06303a;
+        cursor: pointer;
+        display: none;
+    }
+
+    .opcoes {
         display: flex;
         gap: 20px;
     }
-`
+
+    @media screen and (max-width: 1040px) {
+        
+        #abas-navegacao {
+            position: absolute;
+            flex-direction: column;
+            top: 0;
+            background: #fff;
+            height: 100vh;
+            width: 38vw;
+            padding: 1em;
+            animation-duration: 1s;
+            margin-left: -100vw;
+            /* text-align: center; */
+            box-shadow: 1px 1px 20px gray;
+        }
+
+        nav a {
+            border-bottom: solid 2px #d3d3d3;
+            padding: 8px 0;
+        }
+
+        nav a:hover{
+            border-left: solid 3px #5D98A4;
+            color: #5D98A4;
+        }
+        #abas-navegacao.menu-open {
+            margin-left: -20px;
+        }
+
+        .btn_icon_header {
+            display: block;
+        }
+    }
+`;
 
 import fundo from "@/assets/inicial/fundohero.png";
 import { RankingCardProps } from "@/types";
@@ -241,6 +290,12 @@ export const ContainerDestaqueGame = styled.div`
         } 
     }
 
+    @media screen and (max-width: 650px){
+        .img-destaque{
+            width: 520px;
+        }
+    }
+
 `
 
 export const CategoriaContainer = styled.div`
@@ -380,6 +435,7 @@ export const CardDicaStyle = styled.div`
     }
 
     .txt-surpresa {
+        /* font-size: 7px; */
         visibility: hidden;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
@@ -398,7 +454,7 @@ export const CardDicaStyle = styled.div`
         opacity: 1;
         visibility: visible;
         font-weight: 800; 
-        font-size: 18px;
+        font-size: 15px;
         color: #5D98A4;
     }
 `;
