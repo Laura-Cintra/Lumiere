@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import bgLogin from "@/assets/login/login-bg.jpg"
 export const HeaderStyle = styled.header`
     display: flex;
     justify-content: space-between;
@@ -75,6 +75,16 @@ export const HeaderStyle = styled.header`
             display: block;
         }
     }
+`;
+
+export const HeaderFooterContainer = styled.div`
+  display: flex;
+  flex-direction: column; /* Coloca os elementos em coluna */
+  min-height: 100vh; /* Garante que o container ocupe toda a altura da viewport */
+`;
+
+export const MainContent = styled.main`
+    flex-grow: 1; /* Faz o conteúdo principal crescer para preencher o espaço */
 `;
 
 import fundo from "@/assets/inicial/fundohero.png";
@@ -856,5 +866,173 @@ export const FooterStyle = styled.footer`
     }
     #copyright{
         margin-top: 10px;
+    }
+`
+
+export const DivCadastro = styled.div`
+    display: flex;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    justify-content: space-between;
+    background-color: #F9F9F9;
+
+ 
+`
+
+export const DivCadastroEsq = styled.div`
+    background-color: #E3BD3C;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    max-width: 40%;
+    padding: 0px 24px;
+
+    .image{
+        min-height: 280px;
+        min-width: 280px;
+    }
+    
+    h2 {
+        font-family: "Chakra Petch", sans-serif;
+        font-size: 3rem;
+        line-height: 2;
+        padding: 8px 0px 2px;
+    }
+    
+    p {
+        font-size: 2rem;
+        text-align: center;
+        line-height: 3rem;
+        padding-bottom: 6rem;
+    }
+    
+    button{
+        border: none;
+        background-color: inherit;
+    }
+    
+`
+
+export const DivCadastroDir = styled.div`
+    margin: 0 auto;
+    text-align: start;
+    form {
+        display:  flex;
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    form label{
+        padding-right: 1rem;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: "Montserrat", sans-serif;
+        font-size: 34px;
+    }
+
+    form input {
+        color: rgba(0, 0, 0, 0.3);
+        border: none;
+        background-color: white;
+        border-radius: 3px;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+        padding: 6px 120px 6px 0px;
+        font-size: 24px;
+    }
+    ::placeholder {
+        color: rgba(0, 0, 0, 0.3);
+    }
+    input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    button {
+        margin: 0 auto;
+        border: 2px solid #E3BD3C;
+        border-radius: 5px;
+        min-width: 50%;
+        padding: 10px 0px;
+        font-size: 24px;
+        color: white;
+        background-color: #E3BD3C;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background-color: white;
+        border: 2px solid #E3BD3C;
+        color: #E3BD3C;
+    }
+`
+
+export const DivLogin = styled.div`
+    background-image: url(bgLogin);
+    .login-logo {
+        max-width: 130px;
+        max-height: 150px;
+        padding: 6px 0px 0px 6px;
+    }
+
+    .login_card {
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        max-width: 18%;
+        form {
+            display: flex;
+            flex-direction: column;
+            row-gap: 1.5rem;
+        }
+        .esqueceu_senha_link {
+            text-align: end;
+            color: rgba(0,0,0,0.65);
+            text-decoration: underline 2px #E3BD3C;
+        }
+
+        .cadastro_link{
+            text-align: center;
+            color: rgba(0,0,0,0.65);
+            text-decoration: underline 2px #E3BD3C;
+        }
+        
+        h2 {
+            font-family: "Chakra Petch", sans-serif;
+            font-size: 3rem;
+        }
+
+        p {
+            font-size: 2rem;
+        }
+
+        form input {
+            border: none;
+            border-radius: 5px;
+            padding: 10px 9rem 10px 18px;
+            box-shadow: 1px 3px 3px rgba(0,0,0,0.5);
+            margin: 8px;
+        }
+        ::placeholder {
+            color: rgba(0,0,0,0.4);
+            font-size: 1.2rem;
+        }
+
+        form > button {
+           position: relative;
+           margin: 0 auto;
+           padding: 6px 6rem;
+           background-color: #D7BA58;
+           color: white;
+           border: 2px solid #E3BD3C;
+           font-size: 1.5rem;
+           cursor: pointer;
+           border-radius: 5px;
+        }
+        button:hover{
+        background-color: white;
+        border: 2px solid #E3BD3C;
+        color: #E3BD3C;
+        }
     }
 `
