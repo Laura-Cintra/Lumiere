@@ -18,3 +18,12 @@ export type RankingCardProps = {
     height: string;
     premio: string;
 };
+
+export type CadastroProps = {
+    email: string;
+    senha: string;
+    nick_name: string;
+    data_nascimento: string;
+    cep: string;
+    nome: string;
+}

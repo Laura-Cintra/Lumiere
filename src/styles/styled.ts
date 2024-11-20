@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const HeaderStyle = styled.header`
     display: flex;
     justify-content: space-between;
@@ -870,13 +869,11 @@ export const FooterStyle = styled.footer`
 `
 
 export const DivLogin = styled.div`
-    
     display: flex;
     align-items: center;
-    h2{
-        font-family: "Chakra Petch", sans-serif;
-    }
     font-family: "Montserrat", sans-serif;
+    justify-content: space-between;
+    background-color: #F9F9F9;
 `
 
 export const DivLoginEsq = styled.div`
@@ -885,27 +882,28 @@ export const DivLoginEsq = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: white;
-    max-width: 45%;
+    max-width: 40%;
     padding: 0px 24px;
- 
- 
+
     .image{
-        min-height: 300px;
-        min-width: 300px;
+        min-height: 280px;
+        min-width: 280px;
     }
     
     h2 {
+        font-family: "Chakra Petch", sans-serif;
         font-size: 3rem;
         line-height: 2;
-        padding: 12px 0px;
+        padding: 8px 0px 2px;
     }
     
     p {
-        font-size: 1.5rem;
+        font-size: 2rem;
         text-align: center;
         line-height: 3rem;
-        padding-bottom: 12rem;
+        padding-bottom: 6rem;
     }
     
     button{
@@ -913,4 +911,55 @@ export const DivLoginEsq = styled.div`
         background-color: inherit;
     }
     
+`
+
+export const DivLoginDir = styled.div`
+    margin: 0 auto;
+    text-align: start;
+    form {
+        display:  flex;
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    form label{
+        padding-right: 1rem;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: "Montserrat", sans-serif;
+        font-size: 34px;
+    }
+
+    form input {
+        color: rgba(0, 0, 0, 0.3);
+        border: none;
+        background-color: white;
+        border-radius: 3px;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+        padding: 6px 120px 6px 0px;
+        font-size: 24px;
+    }
+    ::placeholder {
+        color: rgba(0, 0, 0, 0.3);
+    }
+    input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    button {
+        margin: 0 auto;
+        border: 2px solid #E3BD3C;
+        border-radius: 5px;
+        min-width: 50%;
+        padding: 10px 0px;
+        font-size: 24px;
+        color: white;
+        background-color: #E3BD3C;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background-color: white;
+        border: 2px solid #E3BD3C;
+        color: #E3BD3C;
+    }
 `
