@@ -36,10 +36,8 @@ export default function Home() {
 
   const prev = () =>
     setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
-  
   const next = () =>
     setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
-
   const rankings: RankingCardProps[] = [
     {
       posicao: 2,

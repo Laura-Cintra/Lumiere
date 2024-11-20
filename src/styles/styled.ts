@@ -77,6 +77,16 @@ export const HeaderStyle = styled.header`
     }
 `;
 
+export const HeaderFooterContainer = styled.div`
+  display: flex;
+  flex-direction: column; /* Coloca os elementos em coluna */
+  min-height: 100vh; /* Garante que o container ocupe toda a altura da viewport */
+`;
+
+export const MainContent = styled.main`
+    flex-grow: 1; /* Faz o conteúdo principal crescer para preencher o espaço */
+`;
+
 import fundo from "@/assets/inicial/fundohero.png";
 import { RankingCardProps } from "@/types";
 
@@ -857,4 +867,50 @@ export const FooterStyle = styled.footer`
     #copyright{
         margin-top: 10px;
     }
+`
+
+export const DivLogin = styled.div`
+    
+    display: flex;
+    align-items: center;
+    h2{
+        font-family: "Chakra Petch", sans-serif;
+    }
+    font-family: "Montserrat", sans-serif;
+`
+
+export const DivLoginEsq = styled.div`
+    background-color: #E3BD3C;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    max-width: 45%;
+    padding: 0px 24px;
+ 
+ 
+    .image{
+        min-height: 300px;
+        min-width: 300px;
+    }
+    
+    h2 {
+        font-size: 3rem;
+        line-height: 2;
+        padding: 12px 0px;
+    }
+    
+    p {
+        font-size: 1.5rem;
+        text-align: center;
+        line-height: 3rem;
+        padding-bottom: 12rem;
+    }
+    
+    button{
+        border: none;
+        background-color: inherit;
+    }
+    
 `

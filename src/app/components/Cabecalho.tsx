@@ -62,7 +62,7 @@ export default function Cabecalho() {
                 <Link href="">
                     <Image src={person} alt="icone do perfil" />
                 </Link>
-                <Link href="">Login</Link>
+                <Link href="/login">Login</Link>
             </div>
         </HeaderStyle>
     );

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import GlobalStyle from "@/styles/global-styled";
 import Cabecalho from "./components/Cabecalho";
 import Rodape from "./components/Rodape";
+import { HeaderFooter } from "./components/HeaderFooter";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,10 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <GlobalStyle />
-        <Cabecalho/>
+        <HeaderFooter>
         {children}
-        <Rodape/>
+        </HeaderFooter>
       </body>
     </html>
   );
