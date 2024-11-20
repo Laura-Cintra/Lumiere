@@ -27,3 +27,8 @@ export type CadastroProps = {
     cep: string;
     nome: string;
 }
+
+export type LoginProps = {
+    email: string;
+    senha: string;
+}

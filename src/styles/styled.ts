@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import bgLogin from "@/assets/login/login-bg.jpg"
 export const HeaderStyle = styled.header`
     display: flex;
     justify-content: space-between;
@@ -868,15 +869,17 @@ export const FooterStyle = styled.footer`
     }
 `
 
-export const DivLogin = styled.div`
+export const DivCadastro = styled.div`
     display: flex;
     align-items: center;
     font-family: "Montserrat", sans-serif;
     justify-content: space-between;
     background-color: #F9F9F9;
+
+ 
 `
 
-export const DivLoginEsq = styled.div`
+export const DivCadastroEsq = styled.div`
     background-color: #E3BD3C;
     height: 100vh;
     display: flex;
@@ -913,7 +916,7 @@ export const DivLoginEsq = styled.div`
     
 `
 
-export const DivLoginDir = styled.div`
+export const DivCadastroDir = styled.div`
     margin: 0 auto;
     text-align: start;
     form {
@@ -961,5 +964,75 @@ export const DivLoginDir = styled.div`
         background-color: white;
         border: 2px solid #E3BD3C;
         color: #E3BD3C;
+    }
+`
+
+export const DivLogin = styled.div`
+    background-image: url(bgLogin);
+    .login-logo {
+        max-width: 130px;
+        max-height: 150px;
+        padding: 6px 0px 0px 6px;
+    }
+
+    .login_card {
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        max-width: 18%;
+        form {
+            display: flex;
+            flex-direction: column;
+            row-gap: 1.5rem;
+        }
+        .esqueceu_senha_link {
+            text-align: end;
+            color: rgba(0,0,0,0.65);
+            text-decoration: underline 2px #E3BD3C;
+        }
+
+        .cadastro_link{
+            text-align: center;
+            color: rgba(0,0,0,0.65);
+            text-decoration: underline 2px #E3BD3C;
+        }
+        
+        h2 {
+            font-family: "Chakra Petch", sans-serif;
+            font-size: 3rem;
+        }
+
+        p {
+            font-size: 2rem;
+        }
+
+        form input {
+            border: none;
+            border-radius: 5px;
+            padding: 10px 9rem 10px 18px;
+            box-shadow: 1px 3px 3px rgba(0,0,0,0.5);
+            margin: 8px;
+        }
+        ::placeholder {
+            color: rgba(0,0,0,0.4);
+            font-size: 1.2rem;
+        }
+
+        form > button {
+           position: relative;
+           margin: 0 auto;
+           padding: 6px 6rem;
+           background-color: #D7BA58;
+           color: white;
+           border: 2px solid #E3BD3C;
+           font-size: 1.5rem;
+           cursor: pointer;
+           border-radius: 5px;
+        }
+        button:hover{
+        background-color: white;
+        border: 2px solid #E3BD3C;
+        color: #E3BD3C;
+        }
     }
 `
