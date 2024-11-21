@@ -1704,3 +1704,91 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
 `
 
 
+export const RankingDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        font-size: 42px;
+        margin-bottom: 36px;
+    }
+    .ul_ranking {
+        font-size: 28px;
+        max-width: 70%;
+        li {
+            margin-bottom: 14px;
+        }
+    }
+
+`
+
+export const RankingBoxDiv = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+        margin: 90px 0px 85px;
+        font-size: 42px;
+        span {
+            color: #FDB813;
+        }
+    }
+
+    ul{
+        border: 1px solid #0964B0;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+    }
+    .underline_box {
+        border: 2px solid #FDB813;
+        min-width: 120%;
+        margin: 3rem 0;
+    }
+    .ranking_linha {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 3;
+        grid-template-rows: 1;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #0964B0;
+        padding: 0.8rem 1rem;
+        list-style: none;
+        .medalha {
+            grid-column: 1;
+        }
+        .pic_nome_pontos{
+            grid-column: 2;
+            min-width: max-content;
+            display: flex;
+            justify-content: start;
+            
+        }
+        .foto {
+            margin: 0 1rem;
+        }
+        .nome_pontos {
+            font-size: 1.4rem;
+        }
+        .pontos_span {
+            color: #FDB813;
+            font-weight: bold;
+        }
+        .porc_consumo {
+            text-align: end;
+            grid-column: 3;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+
+        .consumo_span {
+            color: #0964B0;
+            font-weight: bold;
+        }
+       
+    }
+`

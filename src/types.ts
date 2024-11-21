@@ -48,5 +48,11 @@ export type ModalProps = {
     open: boolean;
     onClose: () => void;
     children: React.ReactNode;
+}
 
+export type RankingProps = {
+    nick_name: string;
+    foto: string | StaticImageData; 
+    pontuacao: number;
+    porc_consumo: number;
 }
