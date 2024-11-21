@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html, body {
+        background-color: #F9F9F9;
         min-height: 100vh; 
         display: flex;
         flex-direction: column;
@@ -21,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        background-color: #F9F9F9;
+        
         flex-grow: 1;
     }
 `
