@@ -37,3 +37,7 @@ export type LoginProps = {
     email: string;
     senha: string;
 }
+
+export type RoundStyleColor = {
+    BgRound?: string; // Prop opcional para a cor do circulo
+}
