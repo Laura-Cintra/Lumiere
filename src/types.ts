@@ -25,7 +25,7 @@ export type ModalConsumoProps = {
     onClose: () => void;
 };
 
-export type CadastroProps = {
+export type UsuarioProps = {
     email: string;
     senha: string;
     nick_name: string;

@@ -3,6 +3,8 @@
 import { PerfilInfosStyle } from "@/styles/styled"
 
 export default function InfosUser(){
+    
+
     return(
         <div>
             <PerfilInfosStyle>
