@@ -1291,7 +1291,7 @@ export const DivLogin = styled.div`
     }
 `;
 
-`;
+
 
 export const PerfilStyle = styled.div`
    width: 100%;
@@ -1654,6 +1654,6 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
         margin-top: -10px;
     }
 
-``
+`
 
 
