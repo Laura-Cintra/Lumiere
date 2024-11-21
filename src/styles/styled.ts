@@ -1381,8 +1381,15 @@ input[type=file]::-webkit-file-upload-button{
         
     }
 }
-
 `
 
-
+export const LoginModal = styled.div`
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* fixed inset-0 flex justify-center items-center 
+        transition-colors $open ? "visible bg-black/20" : "invisible"} */
 `
+
