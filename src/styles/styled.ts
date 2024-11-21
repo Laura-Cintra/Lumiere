@@ -1695,4 +1695,12 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
 
 `
 
+export const DashboardStyle = styled.div`
+    text-align: center;
 
+    h1{
+        text-align: start;
+        margin-bottom: 30px;
+        padding: 10px 20px;
+    }
+`

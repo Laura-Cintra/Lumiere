@@ -1,24 +1,38 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ModalMensagem from "./ModalMensagem";
+import { AuthContext } from "@/context";
+import ConsumptionChart from "./ConsumptionChart";
+import { DashboardStyle } from "@/styles/styled";
 
 export default function HomeDashboard() {
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const { user } = useContext(AuthContext);
 
-    const [isModalOpen, setIsModalOpen] = useState(true);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+  
+  function pegarPrimeiroNome(): string {
+    if (user?.nome) {
+      const nomes = user.nome.split(" "); // Divide o nome completo em partes
+      return nomes[0]; // Retorna o primeiro nome
+    }
+    return ''; // Caso o nome não exista ou esteja vazio, retorna uma string vazia
+  }
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
+  return (
+    <div>
+      <DashboardStyle>
+        <h1>{pegarPrimeiroNome()}, seu Dashboard:</h1>
+        {user?.id_usuario && <ConsumptionChart userId={user.id_usuario} />}
+      </DashboardStyle>
 
-    return (
-        <div>
-            <p>Home não logada!</p>
-
-            {isModalOpen && (
-                <ModalMensagem
-                    months={["setembro", "outubro", "novembro"]} // Meses
-                    onClose={handleCloseModal} // Função para fechar o modal
-                />
-            )}
-        </div>
-    );
+      {isModalOpen && (
+        <ModalMensagem
+          months={["setembro", "outubro", "novembro"]}
+          onClose={handleCloseModal}
+        />
+      )}
+    </div>
+  );
 }
