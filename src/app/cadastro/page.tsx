@@ -8,6 +8,7 @@ import { DivCadastro, DivCadastroDir, DivCadastroEsq } from '@/styles/styled'
 import Image from 'next/image'
 import { CadastroProps } from '@/types'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 
 export default function Cadastro() {
@@ -64,13 +65,15 @@ export default function Cadastro() {
 	<DivCadastro>
 		
 		<DivCadastroEsq>
-			{/* <div className='logo'>
-				<Image src={logo_certa} alt='Logo Lumiere'/>
-			</div> */}
+			<div className='logo'>
+				<Link href={"/"}>
+					<Image src={logo_certa} alt='Logo Lumiere'/>
+				</Link>
+			</div>
 			<Image src={perfil_logo} alt='Ícone de uma mulher em estilo cartoon' className='image'/>
 			<h2>Cadastre-se</h2>
 			<p>Junte-se à Lumière, economize energia e ganhe recompensas por um futuro sustentável!</p>
-			<button><Image src={btn_seta} alt='Botão de um círculo com uma seta para direita'/></button>
+			<Image src={btn_seta} alt='Botão de um círculo com uma seta para direita'/>
 		</DivCadastroEsq>
 		<DivCadastroDir>
 			<form onSubmit={handleSubmit}>

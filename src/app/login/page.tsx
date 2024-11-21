@@ -76,6 +76,11 @@ export default function Login() {
 				<Link className='cadastro_link' href={"/cadastro"}>Ainda não tem uma conta? Cadastre-se</Link>
 			</form>
 		</div>
+		{/* <Modal open={open} onClose={() => setOpen(false)}>
+			<div className="text-center w-56">
+				<h3 className="text-lg font-black text-gray-800">Excluir Produto?</h3>
+			</div>
+		</Modal> */}
 	</DivLogin>
   )
 }

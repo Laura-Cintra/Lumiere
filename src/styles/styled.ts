@@ -1019,32 +1019,34 @@ export const DivCadastro = styled.div`
     font-family: "Montserrat", sans-serif;
     justify-content: space-between;
     background-color: #F9F9F9;
-    max-height: 100vh;
-
-
-    @media screen and (max-width: 1024px){
-        
-    }
-
+    min-height: 100vh;
     @media (max-width: 800px) {
         flex-direction: column;
+        row-gap: 2rem;
     }
 `
 
 export const DivCadastroEsq = styled.div`
     background-color: #E3BD3C;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
     max-width: 40%;
-    padding: 0px 24px;
+    min-height: 100vh;
+    padding: 10rem 0px;
+    .logo img {
+        max-width: 90px;
+        max-height: 110px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
 
     .image{
-        min-height: 280px;
-        min-width: 280px;
+        max-height: 280px;
+        max-width: 280px;
     }
     
     h2 {
@@ -1058,7 +1060,7 @@ export const DivCadastroEsq = styled.div`
         font-size: 2rem;
         text-align: center;
         line-height: 3rem;
-        padding-bottom: 6rem;
+        padding-bottom: 2rem;
     }
     
     button{
@@ -1067,8 +1069,8 @@ export const DivCadastroEsq = styled.div`
     }
 
 
-    @media screen and (max-width: 1024px){
-        max-width: 30%;
+    @media screen and (max-width: 1200px){
+        max-width: 40%;
         h2 {
             font-size: 2rem;
         }
@@ -1078,7 +1080,7 @@ export const DivCadastroEsq = styled.div`
         }
     }
     @media (max-width: 800px){
-        min-width: 100vw
+       min-width: 100vw;
     }
     
 `
@@ -1107,6 +1109,8 @@ export const DivCadastroDir = styled.div`
         box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
         padding: 6px 120px 6px 0px;
         font-size: 24px;
+        text-indent: 10px;
+        max-width: 90%;
     }
     ::placeholder {
         color: rgba(0, 0, 0, 0.3);
@@ -1131,6 +1135,24 @@ export const DivCadastroDir = styled.div`
         background-color: white;
         border: 2px solid #E3BD3C;
         color: #E3BD3C;
+    }
+
+    @media screen and (max-width: 1200px) {
+        padding: 0px 10px;
+        form label {
+            font-size: 28px;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        margin-top: 2rem;
+        form {
+            max-width: 90vw;
+            text-align: start;
+        }
+        form label {
+            font-size: 1.5rem;
+        }
     }
 
 `
