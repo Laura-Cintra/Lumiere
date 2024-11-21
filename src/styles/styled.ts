@@ -1238,6 +1238,7 @@ export const PerfilInfosStyle = styled.div`
    min-height: 600px;
    box-shadow: 0px 2px 5px black;
    border-radius: 5px;
+   position: relative;
 
    .itens-menu{
         display: flex;

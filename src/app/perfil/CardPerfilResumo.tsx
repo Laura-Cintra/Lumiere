@@ -1,5 +1,6 @@
 
 import Image from "next/image"
+
 import { CardPerfilStyle, FundoCardStyle } from "@/styles/styled"
 
 //imagens
