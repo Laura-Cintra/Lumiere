@@ -19,6 +19,11 @@ export type RankingCardProps = {
     premio: string;
 };
 
+export type ModalConsumoProps = {
+    months: string[];
+    onClose: () => void;
+};
+
 export type CadastroProps = {
     email: string;
     senha: string;

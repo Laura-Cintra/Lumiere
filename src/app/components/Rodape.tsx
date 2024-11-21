@@ -31,9 +31,6 @@ export default function Rodape(){
                         <Link href="">Consumo Mensal</Link>
                     </li>
                     <li className="opcoes">
-                        <Link href=""> Simulação</Link>
-                    </li>
-                    <li className="opcoes">
                         <Link href="/sobre-nos">Sobre Nós</Link>
                     </li>
                     <li className="opcoes">
