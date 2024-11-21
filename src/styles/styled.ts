@@ -1112,18 +1112,25 @@ export const DivCadastroDir = styled.div`
 `
 
 export const DivLogin = styled.div`
-    background-image: url(bgLogin);
+    background-color: lightgray;
+    height: 100vh;
     .login-logo {
-        max-width: 130px;
-        max-height: 150px;
+        max-width: 100px;
+        max-height: 120px;
         padding: 6px 0px 0px 6px;
     }
 
     .login_card {
         margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        position: relative;
         max-width: 18%;
+        background-color: rgba(255,255,255,0.3);
+        padding: 2rem 8rem;
+        border-radius: 8px;
         form {
             display: flex;
             flex-direction: column;
@@ -1179,7 +1186,7 @@ export const DivLogin = styled.div`
         color: #E3BD3C;
         }
     }
-`
+`;
 
 export const PerfilStyle = styled.div`
    width: 100%;
@@ -1399,8 +1406,8 @@ input[type=file]::-webkit-file-upload-button{
         
     }
 }
+`;
 
-`
 
 export const FundoCardStyle = styled.div`
     background-color: #5D98A4;
@@ -1542,3 +1549,14 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
     }
 
 `
+
+export const LoginModal = styled.div`
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* fixed inset-0 flex justify-center items-center 
+        transition-colors $open ? "visible bg-black/20" : "invisible"} */
+`
+
