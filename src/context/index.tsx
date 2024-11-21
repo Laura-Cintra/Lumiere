@@ -1,42 +1,41 @@
-"use client"
+'use client'
 
 import React, { createContext, useState } from "react";
 
 export type UserProps = {
-    id_usuario: number | null;
-    nome: string;
-    email: string;
-    senha: string;
-    nick_name: string;
-    data_nascimento: string;
-    cep: string;
+  id_usuario: number | null;
+  nome: string;
+  email: string;
 };
 
 type AuthContextProps = {
-    user: UserProps | null;
-    login: (user: UserProps) => void;
-    logout: () => void;
+  user: UserProps | null;
+  loginContext: (user: UserProps) => void;
+  logout: () => void;
 };
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<UserProps | null>({
+    id_usuario: 0,
+    nome: "",
+    email: "",
+  });
 
-    const [user, setUser] = useState<UserProps | null>(null);
+  const loginContext = (user: UserProps) => {
+    setUser(user);
+  };
 
-    const login = (user: UserProps) => {
-        setUser(user);
-    };
+  const logout = () => {
+    setUser({ id_usuario: 0, nome: "", email: "" });
+  };
 
-    const logout = () => {
-        setUser(null);
-    };
-
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ user, loginContext, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export { AuthContext, AuthProvider };

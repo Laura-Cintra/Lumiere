@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '@/styles/global-styled'
 import perfil_logo from '@/assets/login/icone_login.png'
 import btn_seta from '@/assets/login/btn_right.png'
@@ -9,11 +9,13 @@ import Image from 'next/image'
 import { CadastroProps } from '@/types'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { AuthContext } from '@/context'
 
 
 export default function Cadastro() {
 
 	const navigate = useRouter()
+	const { loginContext } = useContext(AuthContext);
 
 	// const [error, setError] = useState<string | null>(null)
 
@@ -47,8 +49,19 @@ export default function Cadastro() {
 			console.log(cabecalho.body)
 			const response = await fetch("http://localhost:8080/usuarioresource/cadastroUsuario", cabecalho)
 			if (response.ok){
-				alert("Cadastro realizado com sucesso!")
-				navigate.push("/login")
+				const response2 = await fetch(`http://localhost:8080/usuarioresource/buscaIdUsuario/${login.email}`);
+				if (response2.ok) {
+					const idUsuario = await response2.json();
+					  const user = {
+						id_usuario: idUsuario,
+						email: cadastro.email,
+						nome: cadastro.nome,
+					  };
+					  alert("Cadastro realizado com sucesso!")
+					  loginContext(user); // Atualiza o contexto com os dados do usuário
+					  navigate.push("/login")
+					}
+				
 			}else{
 				// const errorData = await response.json()
 				// setError(errorData.message || "Ocorreu um erro ao realizar o cadastro!")

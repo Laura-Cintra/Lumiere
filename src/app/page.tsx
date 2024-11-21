@@ -1,8 +1,14 @@
-"use client"
+'use client'
 
-import HomeApresentacao from "./components/HomeApresentacao"
+import { AuthContext } from "@/context";
+import HomeApresentacao from "./components/HomeApresentacao";
+import HomeLogada from "./components/HomeLogada";
+import { useContext } from "react";
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+
   return (
-    <HomeApresentacao/>
-  )}
+    user?.nome === "" ? <HomeApresentacao /> : <HomeLogada />
+  );
+}
