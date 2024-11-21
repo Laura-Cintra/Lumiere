@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import bgLogin from "@/assets/login/login-bg.jpg"
+
 export const HeaderStyle = styled.header`
     display: flex;
     justify-content: space-between;
@@ -93,7 +93,7 @@ export const MainContent = styled.main`
 `;
 
 import fundo from "@/assets/inicial/fundohero.png";
-import { RankingCardProps } from "@/types";
+import { RankingCardProps, RoundStyleColor } from "@/types";
 
 export const HomeStyle = styled.main`
 
@@ -1058,24 +1058,34 @@ export const DivCadastro = styled.div`
     font-family: "Montserrat", sans-serif;
     justify-content: space-between;
     background-color: #F9F9F9;
-
- 
+    min-height: 100vh;
+    @media (max-width: 800px) {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
 `
 
 export const DivCadastroEsq = styled.div`
     background-color: #E3BD3C;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
     max-width: 40%;
-    padding: 0px 24px;
+    min-height: 100vh;
+    padding: 10rem 0px;
+    .logo img {
+        max-width: 90px;
+        max-height: 110px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
 
     .image{
-        min-height: 280px;
-        min-width: 280px;
+        max-height: 280px;
+        max-width: 280px;
     }
     
     h2 {
@@ -1089,12 +1099,27 @@ export const DivCadastroEsq = styled.div`
         font-size: 2rem;
         text-align: center;
         line-height: 3rem;
-        padding-bottom: 6rem;
+        padding-bottom: 2rem;
     }
     
     button{
         border: none;
         background-color: inherit;
+    }
+
+
+    @media screen and (max-width: 1200px){
+        max-width: 40%;
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+    }
+    @media (max-width: 800px){
+       min-width: 100vw;
     }
     
 `
@@ -1123,6 +1148,8 @@ export const DivCadastroDir = styled.div`
         box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
         padding: 6px 120px 6px 0px;
         font-size: 24px;
+        text-indent: 10px;
+        max-width: 90%;
     }
     ::placeholder {
         color: rgba(0, 0, 0, 0.3);
@@ -1148,41 +1175,80 @@ export const DivCadastroDir = styled.div`
         border: 2px solid #E3BD3C;
         color: #E3BD3C;
     }
-`
 
+    @media screen and (max-width: 1200px) {
+        padding: 0px 10px;
+        form label {
+            font-size: 28px;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        margin-top: 2rem;
+        form {
+            max-width: 90vw;
+            text-align: start;
+        }
+        form label {
+            font-size: 1.5rem;
+        }
+    }
+
+`
+import bgLogin from "@/assets/login/login_bg.jpg"
 export const DivLogin = styled.div`
-    background-image: url(bgLogin);
+    background: url(${bgLogin.src}) no-repeat center center/cover; ;
+    background-color: lightgray;
+    min-height: 150vh;
     .login-logo {
-        max-width: 130px;
-        max-height: 150px;
+        max-width: 100px;
+        max-height: 120px;
         padding: 6px 0px 0px 6px;
     }
 
     .login_card {
         margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
-        position: relative;
-        max-width: 18%;
+        max-width: 50%;
+        background-color: rgba(210,210,210,0.5);
+        padding: 2rem 4rem;
+        border-radius: 50px;
+
+        img{
+            max-width: 50%;
+            height: auto;
+        }
+
         form {
             display: flex;
             flex-direction: column;
             row-gap: 1.5rem;
+            position: relative;
+            width: 100%;
         }
         .esqueceu_senha_link {
             text-align: end;
-            color: rgba(0,0,0,0.65);
+            margin-right: 10%;
+            color: rgba(0,0,0,0.80);
+            font-weight: 600;
             text-decoration: underline 2px #E3BD3C;
         }
 
         .cadastro_link{
             text-align: center;
-            color: rgba(0,0,0,0.65);
+            color: rgba(0,0,0,0.80);
+            font-weight: 600;
             text-decoration: underline 2px #E3BD3C;
         }
         
         h2 {
             font-family: "Chakra Petch", sans-serif;
             font-size: 3rem;
+            margin-bottom: 2rem;
         }
 
         p {
@@ -1190,22 +1256,24 @@ export const DivLogin = styled.div`
         }
 
         form input {
+            width: 80%;
+            height: 2rem;
             border: none;
-            border-radius: 5px;
-            padding: 10px 9rem 10px 18px;
+            border-radius: 10px;
             box-shadow: 1px 3px 3px rgba(0,0,0,0.5);
-            margin: 8px;
+            margin-top: 2rem;
+            padding: 1.5rem 1rem;
         }
         ::placeholder {
-            color: rgba(0,0,0,0.4);
-            font-size: 1.2rem;
+            color: rgba(0,0,0,0.6);
+            font-size: 1.3rem;
         }
 
         form > button {
            position: relative;
            margin: 0 auto;
-           padding: 6px 6rem;
-           background-color: #D7BA58;
+           padding: 8px 6rem;
+           background-color: #E3BD3C;
            color: white;
            border: 2px solid #E3BD3C;
            font-size: 1.5rem;
@@ -1218,12 +1286,59 @@ export const DivLogin = styled.div`
         color: #E3BD3C;
         }
     }
-`
+    
+    @media (max-width: 800px) {
+
+        max-height: 100vh;
+        .login_card {
+            max-width: 85%;
+            margin-top: 1rem;
+        }
+
+        .login_card form > button {
+            padding: 8px 6rem;
+        }
+
+        .login_card img{
+            max-width: 80%;
+            height: auto;
+        }
+
+        .login_card h2 {
+            font-family: "Chakra Petch", sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .login_card p {
+            font-size: 1.3rem;
+        }
+
+        .esqueceu_senha_link {
+            font-size: 1rem;
+        }
+
+        .login_card input {
+            min-width: 100%;
+        }
+    }
+
+    @media (max-width: 475px){
+        .login_card form > button {
+            padding: 8px 4rem;
+        }
+    }
+`;
+
+
 
 export const PerfilStyle = styled.div`
-     width: 100%;
+   width: 100%;
    min-height: 450px;
    /* margin: 20px auto;  */
+   position: relative;
+   margin-top: 60px;
+   gap: 50px;
 
 
    display: flex;
@@ -1240,7 +1355,8 @@ export const FundoStyle = styled.div`
     background-color: #5D98A4;
     width: 100%;
     height: 157px;
-    /* position: relative; */
+    position: absolute;
+
     .card-btn-sair{
         display: flex;
         justify-content: end;
@@ -1254,14 +1370,19 @@ export const FundoStyle = styled.div`
     }
 `
 
+export const PerfilContainerStyle = styled.div`
+    padding-top: 20px;
+
+`
+
 export const PerfilInfosStyle = styled.div`
    font-family: "Montserrat", sans-serif;
    background-color: #fff;
    max-width: 590px;
    min-height: 600px;
-   margin-left: 20px;
    box-shadow: 0px 2px 5px black;
    border-radius: 5px;
+   position: relative;
 
    .itens-menu{
         display: flex;
@@ -1326,6 +1447,22 @@ export const PerfilInfosStyle = styled.div`
       border: none;
     }
 
+    @media screen and (max-width: 590px) {
+        max-width: 420px;
+
+        label{
+            font-size: 15px;
+        }
+        .selectStyle{
+            font-size: 12px;
+            min-height: 32px;
+            min-width: 250px;
+        }
+        .itens-button{
+            font-size: 17px;
+        }
+    }
+
 `
 
 export const DadosUserStyle = styled.div`
@@ -1355,7 +1492,7 @@ export const DadosUserStyle = styled.div`
 
 .upload img{
   border-radius: 50%;
-  border: 6px solid #eaeaea;
+  box-shadow: 3px 3px 10px #eaeaea;
   width: 140px;
   height: 140px;
 }
@@ -1414,6 +1551,148 @@ input[type=file]::-webkit-file-upload-button{
         
     }
 }
+`;
+
+
+export const FundoCardStyle = styled.div`
+    background-color: #5D98A4;
+    width: 285px;
+    height: 70px;
+    position: absolute;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
+    .editar{
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+    }
+`
+
+export const CardPerfilStyle = styled.div<RoundStyleColor>`
+    width: 285px;
+    height: 450px;
+    background-color: #F9F9F9;
+    box-shadow: 0px 2px 4px black;
+    border-radius: 25px;
+    margin-top: -50px;
+    margin-left: 75%;
+    position: absolute;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+    
+
+    .foto{  
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: auto;
+    }
+
+    .foto .foto-perfil{
+        width: 100px;
+        height: 100px;
+        margin-top: 20px;
+        border: 2px solid black;
+        border-radius: 50%;
+    }
+
+    .foto .round{
+        position: absolute;
+        bottom: 0;
+        right: 6px;
+        background: ${(props) => props.BgRound || '#CFD426'};
+        color: white;
+        font-size: 20px;
+        width: 26px;
+        height: 26px;
+        line-height: 33px;
+        text-align: center;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .foto .folha{
+        margin-bottom: 3px;
+        margin-top: -90px;
+        width: 15px;
+        height: 15px;
+    }
+    .infos-user{
+        margin-top: 25px;
+        text-align: center;
+    }
+    .infos-user h2{
+        font-size: 30px;
+    }
+    .infos-user p{
+        font-size: 14px;
+    }
+
+    .infos-user2{
+        margin-top: 50px;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 14px;
+    }
+    .infos-user2 img{
+        width: 28px;
+        height: 28px;
+    }
+    span{
+        color: #FDB813;
+        font-weight: 600;
+    }
+    .infos-emblemas{
+        padding: 30px;
+        margin-top: 40px;
+        font-size: 15px;
+    }
+    .infos-emblemas img{
+        width: 30px;
+        height: 30px;
+    }
+    .infos-emblemas p{
+        margin-bottom: 10px;
+    }
+    .icones{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    @media screen and (max-width:1164px){
+        margin-left: 71%;
+    }
+    @media screen and (max-width:1015px){
+        margin-left: 64%;
+    }
+    @media screen and (max-width:915px){
+        margin-left: 65%;
+        /* margin-top: -10px; */
+    }
+    @media screen and (max-width:842px){
+        margin-left: 55%;
+        margin-top: -10px;
+    }
+    @media screen and (max-width:650px){
+        margin-left: 35%;
+        margin-top: -10px;
+    }
+    @media screen and (max-width:500px){
+        margin-left: 15%;
+        margin-top: -10px;
+    }
 
 `
+
 

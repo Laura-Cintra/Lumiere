@@ -1,11 +1,12 @@
 "use client"
 
-//imagens
-import user from "@/assets/user.png"
 import { DadosUserStyle } from "@/styles/styled"
 import Image from "next/image"
 import { IoCameraOutline } from "react-icons/io5";
 import { FaRegTrashAlt } from "react-icons/fa";
+
+//imagens
+import user from "@/assets/user.png"
 
 
 export default function DadosUser(){
@@ -18,7 +19,6 @@ export default function DadosUser(){
                     <input type="file"/>
                     <IoCameraOutline />
                 </div>
-                {/* <div className="camera">📷</div> */}
             </div>
             <div className="informacoes">
                 <h2>Fulano da Silva</h2>
@@ -28,7 +28,6 @@ export default function DadosUser(){
                 <p>110 WattsCoins</p>
                 <p>20% de consumo</p>
                 <p>Desde 12/01/2023</p>
-                {/* <hr /> */}
             </div>
         </DadosUserStyle>
     )
