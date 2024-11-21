@@ -7,12 +7,14 @@ import icone from '@/assets/login/icone_login.png'
 import Link from 'next/link'
 import { LoginProps } from '@/types'
 import { useRouter } from 'next/navigation'
+import Modal from './Modal'
 
 
 export default function Login() {
 
 	const navigate = useRouter()
 	const [error, setError] = useState<string | null>(null)
+	const [open, setOpen] = useState(false) // abrir e fechar o modal
 
 	const [login, setLogin] = useState<LoginProps>({
 		'email' : '',
@@ -35,10 +37,9 @@ export default function Login() {
 
 
 		try{
-			console.log(cabecalho.body)
 			const response = await fetch("http://localhost:8080/usuarioresource/login", cabecalho)
 			if (response.ok){
-				alert("Login realizado com sucesso!")
+				setOpen(true)
 				navigate.push("/")
 			}else{
 				const errorData = await response.json()
@@ -49,8 +50,10 @@ export default function Login() {
 			setError("Erro ao conectar com o servidor.");
 	   	}
 	} 
+	
 
   return (
+	
 	<DivLogin>
 		<div className='login-logo'>
 			<Link href={"/"}>
@@ -73,6 +76,11 @@ export default function Login() {
 				<Link className='cadastro_link' href={"/cadastro"}>Ainda não tem uma conta? Cadastre-se</Link>
 			</form>
 		</div>
+		<Modal open={open} onClose={() => setOpen(false)}>
+			<div className="text-center w-56">
+				<h3 className="text-lg font-black text-gray-800">Excluir Produto?</h3>
+			</div>
+		</Modal>
 	</DivLogin>
   )
 }

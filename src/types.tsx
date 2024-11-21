@@ -37,3 +37,9 @@ export type LoginProps = {
     email: string;
     senha: string;
 }
+
+export type ModalProps = {
+    open: boolean;
+    onClose: () => void;
+    children: React.ReactNode;
+}
