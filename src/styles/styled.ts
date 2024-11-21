@@ -1075,12 +1075,16 @@ export const DivCadastroEsq = styled.div`
     max-width: 40%;
     min-height: 100vh;
     padding: 10rem 0px;
+    
     .logo img {
         max-width: 90px;
         max-height: 110px;
         position: absolute;
         left: 0;
         top: 0;
+        padding: 10px 0px 0px 10px;
+        margin-left: 0.6rem;
+        margin-top: 0.6rem;
     }
 
     .image{
@@ -1099,7 +1103,6 @@ export const DivCadastroEsq = styled.div`
         font-size: 2rem;
         text-align: center;
         line-height: 3rem;
-        padding-bottom: 2rem;
     }
     
     button{
@@ -1109,6 +1112,7 @@ export const DivCadastroEsq = styled.div`
 
 
     @media screen and (max-width: 1200px){
+        
         max-width: 40%;
         h2 {
             font-size: 2rem;
@@ -1120,6 +1124,10 @@ export const DivCadastroEsq = styled.div`
     }
     @media (max-width: 800px){
        min-width: 100vw;
+       
+       p {
+        margin-bottom: 1rem;
+       }
     }
     
 `
