@@ -21,6 +21,7 @@ export type RankingCardProps = {
 
 export type ModalConsumoProps = {
     months: string[];
+    month?: string;
     onClose: () => void;
 };
 

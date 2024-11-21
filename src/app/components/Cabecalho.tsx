@@ -1,42 +1,49 @@
 "use client";
 
+
 import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
+
 import logocerta from "@/assets/logo_certa.png";
 import person from "@/assets/person.png";
 
+
 import ranking from "@/assets/ranking.png";
-
-import ModalMensagem from "./ModalMensagem";
 import CardPerfilResumo from "../perfil/CardPerfilResumo";
-
+import ModalNovoConsumo from "./ModalNovoConsumo";
 
 export default function Cabecalho() {
     const [menu, setMenu] = useState<boolean>(false);
     const [cardPerfil, setCardPerfil] = useState<boolean>(false);
     const abasNavegacaoRef = useRef<HTMLDivElement>(null);
 
+
     const togglePerfil = () => {
         setCardPerfil(!cardPerfil); // Alterna o estado do card de perfil
     };
+
 
     const toggleSidebar = () => {
         setMenu(!menu);
         document.body.style.overflow = menu ? "auto" : "hidden"; // Desativa o scroll do body quando o menu está aberto
     };
 
+
     const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const handleOpenModal = () => {
         setIsModalOpen(true); // Abre o modal
     };
 
+
     const handleCloseModal = () => {
         setIsModalOpen(false); // Fecha o modal
     };
+
 
     return (
         <div>
@@ -72,16 +79,16 @@ export default function Cabecalho() {
                     <Link href="">
                         <Image src={ranking} alt="icone do ranking" />
                     </Link>
-                    <Link href=""> 
+                    <Link href="">
                         <Image src={person} alt="icone do perfil" onClick={togglePerfil} />
                     </Link>
                     <Link href="/login">Login</Link>
                 </div>
-                
+
                 {isModalOpen && (
-                    <ModalConsumo
-                        months={["setembro", "outubro", "novembro"]} // Meses
-                        onClose={handleCloseModal} // Função para fechar o modal
+                    <ModalNovoConsumo
+                        months={["novembro"]}  // Passando o mês atual para o modal
+                        onClose={handleCloseModal}  // Passando a função para fechar o modal
                     />
                 )}
             </HeaderStyle>
