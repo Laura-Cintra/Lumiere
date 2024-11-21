@@ -6,7 +6,7 @@ import btn_seta from '@/assets/login/btn_right.png'
 import logo_certa from '@/assets/logo_certa.png'
 import { DivCadastro, DivCadastroDir, DivCadastroEsq } from '@/styles/styled'
 import Image from 'next/image'
-import { CadastroProps } from '@/types'
+import { UsuarioProps } from '@/types'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { AuthContext } from '@/context'
@@ -17,9 +17,9 @@ export default function Cadastro() {
 	const navigate = useRouter()
 	const { loginContext } = useContext(AuthContext);
 
-	const [error, setError] = useState<string | null>(null)
+	// const [error, setError] = useState<string | null>(null)
 
-	const [cadastro, setCadastro] = useState<CadastroProps>(
+	const [cadastro, setCadastro] = useState<UsuarioProps>(
 		{
 			email: '',
 			senha: '',
@@ -49,7 +49,7 @@ export default function Cadastro() {
 			console.log(cabecalho.body)
 			const response = await fetch("http://localhost:8080/usuarioresource/cadastroUsuario", cabecalho)
 			if (response.ok){
-				const response2 = await fetch(`http://localhost:8080/usuarioresource/buscaIdUsuario/${login.email}`);
+				const response2 = await fetch(`http://localhost:8080/usuarioresource/buscaIdUsuario/${cadastro.email}`);
 				if (response2.ok) {
 					const idUsuario = await response2.json();
 					  const user = {
@@ -63,12 +63,12 @@ export default function Cadastro() {
 					}
 				
 			}else{
-				const errorData = await response.json()
-				setError(errorData.message || "Ocorreu um erro ao realizar o cadastro!")
+				// const errorData = await response.json()
+				// setError(errorData.message || "Ocorreu um erro ao realizar o cadastro!")
 		   	}
 		} catch(error){
 			console.error("Erro ao realizar cadastro", error);
-			setError("Erro ao conectar com o servidor.");
+			// setError("Erro ao conectar com o servidor.");
 	   	}
 	} 
 

@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { AuthContext } from "@/context";
 
 export default function Login() {
+
   const navigate = useRouter();
   const { loginContext } = useContext(AuthContext);
 

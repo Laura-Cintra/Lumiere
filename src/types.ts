@@ -25,7 +25,7 @@ export type ModalConsumoProps = {
     onClose: () => void;
 };
 
-export type CadastroProps = {
+export type UsuarioProps = {
     email: string;
     senha: string;
     nick_name: string;
@@ -48,42 +48,14 @@ export type ModalProps = {
     open: boolean;
     onClose: () => void;
     children: React.ReactNode;
-
 }
 
-// Tipos para os dados da API
-// export type ApiResponse = {
-//     mesAno: string; // Exemplo: "01/2024"
-//     consumo: number; // Exemplo: 150
-//   }
-  
-  // Tipos para os dados do gráfico
-// export interface ChartData {
-//     series: { name: string; data: number[] }[]; // Dados das séries do gráfico
-//     options: {
-//       chart: {
-//         type: string;
-//         height: number;
-//       };
-//       xaxis: {
-//         categories: string[]; // Categorias do eixo X
-//       };
-//       yaxis: {
-//         title: {
-//           text: string;
-//         };
-//       };
-//       colors: string[]; // Cores das séries
-//       stroke: {
-//         curve: string;
-//         width: number;
-//       };
-//       tooltip: {
-//         theme: string;
-//     };
-//   };
-// }
-
+export type RankingProps = {
+    nick_name: string;
+    foto: string | StaticImageData; 
+    pontuacao: number;
+    porc_consumo: number;
+}
   
 
 // Tipos para a resposta da API
@@ -99,3 +71,4 @@ export type ApiResponse = {
     series: { name: string; data: number[] }[]; // Dados das séries do gráfico
     options: ApexOptions; // Usa o tipo ApexOptions diretamente
   }
+
