@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import bgLogin from "@/assets/login/login-bg.jpg"
+
 export const HeaderStyle = styled.header`
     display: flex;
     justify-content: space-between;
@@ -1019,24 +1019,34 @@ export const DivCadastro = styled.div`
     font-family: "Montserrat", sans-serif;
     justify-content: space-between;
     background-color: #F9F9F9;
-
- 
+    min-height: 100vh;
+    @media (max-width: 800px) {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
 `
 
 export const DivCadastroEsq = styled.div`
     background-color: #E3BD3C;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
     max-width: 40%;
-    padding: 0px 24px;
+    min-height: 100vh;
+    padding: 10rem 0px;
+    .logo img {
+        max-width: 90px;
+        max-height: 110px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
 
     .image{
-        min-height: 280px;
-        min-width: 280px;
+        max-height: 280px;
+        max-width: 280px;
     }
     
     h2 {
@@ -1050,12 +1060,27 @@ export const DivCadastroEsq = styled.div`
         font-size: 2rem;
         text-align: center;
         line-height: 3rem;
-        padding-bottom: 6rem;
+        padding-bottom: 2rem;
     }
     
     button{
         border: none;
         background-color: inherit;
+    }
+
+
+    @media screen and (max-width: 1200px){
+        max-width: 40%;
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+    }
+    @media (max-width: 800px){
+       min-width: 100vw;
     }
     
 `
@@ -1084,6 +1109,8 @@ export const DivCadastroDir = styled.div`
         box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
         padding: 6px 120px 6px 0px;
         font-size: 24px;
+        text-indent: 10px;
+        max-width: 90%;
     }
     ::placeholder {
         color: rgba(0, 0, 0, 0.3);
@@ -1109,11 +1136,31 @@ export const DivCadastroDir = styled.div`
         border: 2px solid #E3BD3C;
         color: #E3BD3C;
     }
-`
 
+    @media screen and (max-width: 1200px) {
+        padding: 0px 10px;
+        form label {
+            font-size: 28px;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        margin-top: 2rem;
+        form {
+            max-width: 90vw;
+            text-align: start;
+        }
+        form label {
+            font-size: 1.5rem;
+        }
+    }
+
+`
+import bgLogin from "@/assets/login/login_bg.jpg"
 export const DivLogin = styled.div`
+    background: url(${bgLogin.src}) no-repeat center center/cover; ;
     background-color: lightgray;
-    height: 100vh;
+    min-height: 150vh;
     .login-logo {
         max-width: 100px;
         max-height: 120px;
@@ -1127,30 +1174,42 @@ export const DivLogin = styled.div`
         justify-content: center;
         align-items: center;
         text-align: center;
-        max-width: 18%;
-        background-color: rgba(255,255,255,0.3);
-        padding: 2rem 8rem;
-        border-radius: 8px;
+        max-width: 50%;
+        background-color: rgba(210,210,210,0.5);
+        padding: 2rem 4rem;
+        border-radius: 50px;
+
+        img{
+            max-width: 50%;
+            height: auto;
+        }
+
         form {
             display: flex;
             flex-direction: column;
             row-gap: 1.5rem;
+            position: relative;
+            width: 100%;
         }
         .esqueceu_senha_link {
             text-align: end;
-            color: rgba(0,0,0,0.65);
+            margin-right: 10%;
+            color: rgba(0,0,0,0.80);
+            font-weight: 600;
             text-decoration: underline 2px #E3BD3C;
         }
 
         .cadastro_link{
             text-align: center;
-            color: rgba(0,0,0,0.65);
+            color: rgba(0,0,0,0.80);
+            font-weight: 600;
             text-decoration: underline 2px #E3BD3C;
         }
         
         h2 {
             font-family: "Chakra Petch", sans-serif;
             font-size: 3rem;
+            margin-bottom: 2rem;
         }
 
         p {
@@ -1158,22 +1217,24 @@ export const DivLogin = styled.div`
         }
 
         form input {
+            width: 80%;
+            height: 2rem;
             border: none;
-            border-radius: 5px;
-            padding: 10px 9rem 10px 18px;
+            border-radius: 10px;
             box-shadow: 1px 3px 3px rgba(0,0,0,0.5);
-            margin: 8px;
+            margin-top: 2rem;
+            padding: 1.5rem 1rem;
         }
         ::placeholder {
-            color: rgba(0,0,0,0.4);
-            font-size: 1.2rem;
+            color: rgba(0,0,0,0.6);
+            font-size: 1.3rem;
         }
 
         form > button {
            position: relative;
            margin: 0 auto;
-           padding: 6px 6rem;
-           background-color: #D7BA58;
+           padding: 8px 6rem;
+           background-color: #E3BD3C;
            color: white;
            border: 2px solid #E3BD3C;
            font-size: 1.5rem;
@@ -1186,7 +1247,51 @@ export const DivLogin = styled.div`
         color: #E3BD3C;
         }
     }
+    
+    @media (max-width: 800px) {
+
+        max-height: 100vh;
+        .login_card {
+            max-width: 85%;
+            margin-top: 1rem;
+        }
+
+        .login_card form > button {
+            padding: 8px 6rem;
+        }
+
+        .login_card img{
+            max-width: 80%;
+            height: auto;
+        }
+
+        .login_card h2 {
+            font-family: "Chakra Petch", sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .login_card p {
+            font-size: 1.3rem;
+        }
+
+        .esqueceu_senha_link {
+            font-size: 1rem;
+        }
+
+        .login_card input {
+            min-width: 100%;
+        }
+    }
+
+    @media (max-width: 475px){
+        .login_card form > button {
+            padding: 8px 4rem;
+        }
+    }
 `;
+
+
 
 export const PerfilStyle = styled.div`
    width: 100%;
@@ -1551,13 +1656,4 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
 
 `
 
-export const LoginModal = styled.div`
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* fixed inset-0 flex justify-center items-center 
-        transition-colors $open ? "visible bg-black/20" : "invisible"} */
-`
 
