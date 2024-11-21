@@ -88,7 +88,7 @@ export const MainContent = styled.main`
 `;
 
 import fundo from "@/assets/inicial/fundohero.png";
-import { RankingCardProps } from "@/types";
+import { RankingCardProps, RoundStyleColor } from "@/types";
 
 export const HomeStyle = styled.main`
 
@@ -1291,10 +1291,15 @@ export const DivLogin = styled.div`
     }
 `;
 
+`;
+
 export const PerfilStyle = styled.div`
-     width: 100%;
+   width: 100%;
    min-height: 450px;
    /* margin: 20px auto;  */
+   position: relative;
+   margin-top: 60px;
+   gap: 50px;
 
 
    display: flex;
@@ -1311,7 +1316,8 @@ export const FundoStyle = styled.div`
     background-color: #5D98A4;
     width: 100%;
     height: 157px;
-    /* position: relative; */
+    position: absolute;
+
     .card-btn-sair{
         display: flex;
         justify-content: end;
@@ -1325,14 +1331,19 @@ export const FundoStyle = styled.div`
     }
 `
 
+export const PerfilContainerStyle = styled.div`
+    padding-top: 20px;
+
+`
+
 export const PerfilInfosStyle = styled.div`
    font-family: "Montserrat", sans-serif;
    background-color: #fff;
    max-width: 590px;
    min-height: 600px;
-   margin-left: 20px;
    box-shadow: 0px 2px 5px black;
    border-radius: 5px;
+   position: relative;
 
    .itens-menu{
         display: flex;
@@ -1397,6 +1408,22 @@ export const PerfilInfosStyle = styled.div`
       border: none;
     }
 
+    @media screen and (max-width: 590px) {
+        max-width: 420px;
+
+        label{
+            font-size: 15px;
+        }
+        .selectStyle{
+            font-size: 12px;
+            min-height: 32px;
+            min-width: 250px;
+        }
+        .itens-button{
+            font-size: 17px;
+        }
+    }
+
 `
 
 export const DadosUserStyle = styled.div`
@@ -1426,7 +1453,7 @@ export const DadosUserStyle = styled.div`
 
 .upload img{
   border-radius: 50%;
-  border: 6px solid #eaeaea;
+  box-shadow: 3px 3px 10px #eaeaea;
   width: 140px;
   height: 140px;
 }
@@ -1485,5 +1512,148 @@ input[type=file]::-webkit-file-upload-button{
         
     }
 }
+`;
+
+
+export const FundoCardStyle = styled.div`
+    background-color: #5D98A4;
+    width: 285px;
+    height: 70px;
+    position: absolute;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
+    .editar{
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+    }
 `
+
+export const CardPerfilStyle = styled.div<RoundStyleColor>`
+    width: 285px;
+    height: 450px;
+    background-color: #F9F9F9;
+    box-shadow: 0px 2px 4px black;
+    border-radius: 25px;
+    margin-top: -50px;
+    margin-left: 75%;
+    position: absolute;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+    
+
+    .foto{  
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: auto;
+    }
+
+    .foto .foto-perfil{
+        width: 100px;
+        height: 100px;
+        margin-top: 20px;
+        border: 2px solid black;
+        border-radius: 50%;
+    }
+
+    .foto .round{
+        position: absolute;
+        bottom: 0;
+        right: 6px;
+        background: ${(props) => props.BgRound || '#CFD426'};
+        color: white;
+        font-size: 20px;
+        width: 26px;
+        height: 26px;
+        line-height: 33px;
+        text-align: center;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .foto .folha{
+        margin-bottom: 3px;
+        margin-top: -90px;
+        width: 15px;
+        height: 15px;
+    }
+    .infos-user{
+        margin-top: 25px;
+        text-align: center;
+    }
+    .infos-user h2{
+        font-size: 30px;
+    }
+    .infos-user p{
+        font-size: 14px;
+    }
+
+    .infos-user2{
+        margin-top: 50px;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 14px;
+    }
+    .infos-user2 img{
+        width: 28px;
+        height: 28px;
+    }
+    span{
+        color: #FDB813;
+        font-weight: 600;
+    }
+    .infos-emblemas{
+        padding: 30px;
+        margin-top: 40px;
+        font-size: 15px;
+    }
+    .infos-emblemas img{
+        width: 30px;
+        height: 30px;
+    }
+    .infos-emblemas p{
+        margin-bottom: 10px;
+    }
+    .icones{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    @media screen and (max-width:1164px){
+        margin-left: 71%;
+    }
+    @media screen and (max-width:1015px){
+        margin-left: 64%;
+    }
+    @media screen and (max-width:915px){
+        margin-left: 65%;
+        /* margin-top: -10px; */
+    }
+    @media screen and (max-width:842px){
+        margin-left: 55%;
+        margin-top: -10px;
+    }
+    @media screen and (max-width:650px){
+        margin-left: 35%;
+        margin-top: -10px;
+    }
+    @media screen and (max-width:500px){
+        margin-left: 15%;
+        margin-top: -10px;
+    }
+
+``
+
 
