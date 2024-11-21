@@ -42,11 +42,10 @@ export default function Login() {
 				// setOpen(true)
 				navigate.push("/")
 			}else{
-				
 				alert("Falha ao realizar o Login! Verifique se o e-mail e senha estão corretos.")
 		   	}
 		} catch(error){
-			console.error("Erro ao realizar cadastro", error);
+			alert("Erro ao realizar login no servidor");
 			// setError("Erro ao conectar com o servidor.");
 	   	}
 	} 

@@ -15,7 +15,7 @@ export default function Cadastro() {
 
 	const navigate = useRouter()
 
-	const [error, setError] = useState<string | null>(null)
+	// const [error, setError] = useState<string | null>(null)
 
 	const [cadastro, setCadastro] = useState<CadastroProps>(
 		{
@@ -50,12 +50,12 @@ export default function Cadastro() {
 				alert("Cadastro realizado com sucesso!")
 				navigate.push("/login")
 			}else{
-				const errorData = await response.json()
-				setError(errorData.message || "Ocorreu um erro ao realizar o cadastro!")
+				// const errorData = await response.json()
+				// setError(errorData.message || "Ocorreu um erro ao realizar o cadastro!")
 		   	}
 		} catch(error){
 			console.error("Erro ao realizar cadastro", error);
-			setError("Erro ao conectar com o servidor.");
+			// setError("Erro ao conectar com o servidor.");
 	   	}
 	} 
 
