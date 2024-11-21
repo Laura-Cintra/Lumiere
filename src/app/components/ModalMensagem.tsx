@@ -36,7 +36,7 @@ export default function ModalMensagem({ onClose }: ModalConsumoProps) {
 
                 {isModalOpen && (
                     <ModalConsumo
-                        months={["setembro", "outubro", "novembro"]} // Meses
+                        months={["agosto", "setembro", "outubro"]} // Meses
                         onClose={handleCloseModal} // Função para fechar o modal
                     />
                 )}

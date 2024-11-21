@@ -9,7 +9,7 @@ import logocerta from "@/assets/logo_certa.png";
 import person from "@/assets/person.png";
 import ranking from "@/assets/ranking.png";
 // import ModalConsumo from "./ModalConsumo";
-import ModalMensagem from "./ModalMensagem";
+import ModalNovoConsumo from "./ModalNovoConsumo";
 
 export default function Cabecalho() {
     const [menu, setMenu] = useState<boolean>(false);
@@ -77,9 +77,9 @@ export default function Cabecalho() {
             </div>
 
             {isModalOpen && (
-                <ModalMensagem
-                    months={["setembro", "outubro", "novembro"]} // Meses
-                    onClose={handleCloseModal} // Função para fechar o modal
+                <ModalNovoConsumo
+                    months={["novembro"]}  // Passando o mês atual para o modal
+                    onClose={handleCloseModal}  // Passando a função para fechar o modal
                 />
             )}
         </HeaderStyle>
