@@ -29,6 +29,11 @@ export const HeaderStyle = styled.header`
         text-decoration: none;
     }
 
+    nav a:hover{
+        color: #5D98A4;
+        border-bottom: 2px solid #5D98A4;
+    }
+
     .btn_icon_header {
         background: transparent;
         border: none;
