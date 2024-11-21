@@ -527,7 +527,7 @@ export const Carrossel = styled.div`
       justify-content: center;
       align-items: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      border-radius: 3px;
       overflow: hidden;
     }
   }
@@ -640,7 +640,7 @@ export const OdsContainer = styled.div`
         display: flex; 
         justify-content: center; 
         align-items: center;
-        flex-wrap: wrap;
+        margin: 0 13%;
     }
 
     .imagem_ods{
@@ -648,17 +648,19 @@ export const OdsContainer = styled.div`
     }
 
     p{
-        width: 80%;
+        width: 55%;
         margin: 0 auto;
         margin-top: 30px;
         margin-bottom: 10px;
+        font-size:17px;
+        color:#1a1a1a;
     }
 
     .titulo{
         margin-top: 60px;
         font-size: 2rem;
         font-weight: 500;
-        text-align: center;
+        margin-left: -25px;
     }
 
     .subtitulo{
@@ -676,6 +678,12 @@ export const OdsContainer = styled.div`
     }
     .iconeraio2{
         color:  #BF8C2B;
+    }
+
+    @media (max-width: 768px) {
+        .container{
+            flex-wrap: wrap;
+        }
     }
 `;
 
@@ -820,14 +828,150 @@ export const ParticipantesStyle = styled.div`
 
 export const CirclesStyle = styled.div`
     .circles{
+            background-color: #F7F7F7;
             display: flex;
             justify-content: space-between;
         }
 `
 
-export const FooterStyle = styled.footer`
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
 
-    margin-top: 30px;
+export const ModalContainer = styled.div`
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Chakra Petch", sans-serif;
+
+    .titulo{
+        display: flex;
+
+        h2{
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333333;
+            padding: 5px 8px;
+        }
+    }
+
+  .close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+  }
+
+  span{
+    color: #CFAF42;
+    text-transform: uppercase;
+  }
+
+  label{
+    display: block;
+    text-align: left;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    color: #707070;
+    font-weight: 700;
+  }
+
+  input{
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .fileContainer{
+    display: flex;
+    align-items: center;
+
+    input{
+        border: 2px solid #808080;
+        color: #707070;
+    }
+
+    input[type="file"]::file-selector-button{
+        background-color: #555555;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        border: none;
+    }
+  }
+
+  p{
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #707070;
+  }
+
+  .cadastrar-button{
+    margin-top: 1rem;
+    background: #D7BA58;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        background: #B29943;
+    }
+  }
+`;
+
+export const SetasContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NavButton = styled.button<{ disabled: boolean }>`
+  background: ${(props) => (props.disabled ? "#E5D6A3" : "#CFAF42")};
+  color: #fff;
+  border: none;
+  padding: 5px;
+  margin: 20px;
+  margin-bottom: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1.8rem;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  transition: background-color 0.3s;
+
+  &:hover {
+    background: ${(props) => (props.disabled ? "#ececec" : "#E9CF75")};
+  }
+`;
+
+export const FooterStyle = styled.footer`
     max-height: 184px;
     width: 100%;
     background-color: #5D98A4;
