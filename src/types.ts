@@ -56,3 +56,19 @@ export type RankingProps = {
     pontuacao: number;
     porc_consumo: number;
 }
+  
+
+// Tipos para a resposta da API
+export type ApiResponse = {
+    mesAno: string; // Exemplo: "01/2024"
+    consumoKwh: number; // Exemplo: 150
+  };
+  
+  // Tipos para o estado do gráfico
+  import { ApexOptions } from "apexcharts"; // Importa os tipos corretos de ApexOptions
+  
+  export interface ChartData {
+    series: { name: string; data: number[] }[]; // Dados das séries do gráfico
+    options: ApexOptions; // Usa o tipo ApexOptions diretamente
+  }
+
