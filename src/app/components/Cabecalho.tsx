@@ -1,15 +1,18 @@
 "use client";
 
+import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
 import Image from "next/image";
 import Link from "next/link";
-import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 
 import logocerta from "@/assets/logo_certa.png";
-import ranking from "@/assets/ranking.png";
 import person from "@/assets/person.png";
-import ModalConsumo from "./ModalConsumo";
+
+import ranking from "@/assets/ranking.png";
+
+import ModalMensagem from "./ModalMensagem";
 import CardPerfilResumo from "../perfil/CardPerfilResumo";
+
 
 export default function Cabecalho() {
     const [menu, setMenu] = useState<boolean>(false);

@@ -29,6 +29,11 @@ export const HeaderStyle = styled.header`
         text-decoration: none;
     }
 
+    nav a:hover{
+        color: #5D98A4;
+        border-bottom: 2px solid #5D98A4;
+    }
+
     .btn_icon_header {
         background: transparent;
         border: none;
@@ -577,9 +582,9 @@ export const RankingCardContainer = styled.div<Pick<RankingCardProps, "height" |
 
   .ranking-box {
     background-color: ${({ posicao }) => {
-      if (posicao === 1) return "#5D98A4";
-      if (posicao === 2) return "#698186";
-      return "#91A8AD";
+        if (posicao === 1) return "#5D98A4";
+        if (posicao === 2) return "#698186";
+        return "#91A8AD";
     }};
     color: white;
     border-radius: 8px;
@@ -713,24 +718,30 @@ export const SobreStyle = styled.main`
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-
-        @media (max-width: 768px) {
-            flex-wrap: wrap;
-        }
-    }
-
-    .container-compromissos{
         font-size: 1.1rem;
         color: #333;
         line-height: 1.6;
         max-width: 75%;
         margin: 0 auto;
+
+        @media (max-width: 768px) {
+            flex-wrap: wrap;
+            max-width: 50%;
+
+            div{
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            flex-wrap: wrap;
+            max-width: 80%;
+        }
     }
 `;
 
 export const ParticipantesStyle = styled.div`
-    margin: 40px auto 50px auto;
-    background-color: #F3F4F6;
+    margin: 30px auto 50px auto;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -814,6 +825,12 @@ export const ParticipantesStyle = styled.div`
         }
     }
 
+    @media screen and (max-width:800px) {
+        #part3{
+            margin-top: 30px;
+        }
+    }
+
     @media screen and (max-width:700px) {
         .icons{
             margin-left: 150px;
@@ -823,12 +840,16 @@ export const ParticipantesStyle = styled.div`
         #part1, #part2, #part3{
             padding-top: 30px;
         }
+
+        #part2, #part3{
+            margin-top: 20px;
+        }
     }
 `
 
 export const CirclesStyle = styled.div`
     .circles{
-            background-color: #F7F7F7;
+            background-color: #F9F9F9;
             display: flex;
             justify-content: space-between;
         }
@@ -869,6 +890,12 @@ export const ModalContainer = styled.div`
         }
     }
 
+    .p-apresentacao > p{
+        color: #494C46;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
   .close{
     position: absolute;
     top: 1rem;
@@ -906,13 +933,15 @@ export const ModalContainer = styled.div`
   .fileContainer{
     display: flex;
     align-items: center;
+    border: 2px solid #808080;
+    border-radius: 5px;
 
     input{
         border: 2px solid #808080;
         color: #707070;
     }
 
-    input[type="file"]::file-selector-button{
+    .custom-file-upload{
         background-color: #555555;
         color: #ffffff;
         padding: 0.5rem 1rem;
@@ -920,11 +949,21 @@ export const ModalContainer = styled.div`
         cursor: pointer;
         font-size: 0.9rem;
         border: none;
+        margin-left: 15px;
+    }
+
+    input[type="file"]{
+        display: none;
+    }
+
+    p{
+        margin-top: 15px;
+        padding-left: 20px;
     }
   }
 
   p{
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     font-size: 0.9rem;
     color: #707070;
   }
