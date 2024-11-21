@@ -1,14 +1,15 @@
 "use client";
 
+import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
 import Image from "next/image";
 import Link from "next/link";
-import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 
 import logocerta from "@/assets/logo_certa.png";
-import ranking from "@/assets/ranking.png";
 import person from "@/assets/person.png";
-import ModalConsumo from "./ModalConsumo";
+import ranking from "@/assets/ranking.png";
+// import ModalConsumo from "./ModalConsumo";
+import ModalMensagem from "./ModalMensagem";
 
 export default function Cabecalho() {
     const [menu, setMenu] = useState<boolean>(false);
@@ -35,7 +36,7 @@ export default function Cabecalho() {
     const handleCloseModal = () => {
         setIsModalOpen(false); // Fecha o modal
     };
-    
+
     return (
         <HeaderStyle>
             <button onClick={toggleSidebar} className="btn_icon_header">
@@ -76,10 +77,10 @@ export default function Cabecalho() {
             </div>
 
             {isModalOpen && (
-            <ModalConsumo
-            months={["setembro", "outubro", "novembro"]} // Meses
-            onClose={handleCloseModal} // Função para fechar o modal
-            />
+                <ModalMensagem
+                    months={["setembro", "outubro", "novembro"]} // Meses
+                    onClose={handleCloseModal} // Função para fechar o modal
+                />
             )}
         </HeaderStyle>
     );

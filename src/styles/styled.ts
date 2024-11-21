@@ -577,9 +577,9 @@ export const RankingCardContainer = styled.div<Pick<RankingCardProps, "height" |
 
   .ranking-box {
     background-color: ${({ posicao }) => {
-      if (posicao === 1) return "#5D98A4";
-      if (posicao === 2) return "#698186";
-      return "#91A8AD";
+        if (posicao === 1) return "#5D98A4";
+        if (posicao === 2) return "#698186";
+        return "#91A8AD";
     }};
     color: white;
     border-radius: 8px;
@@ -828,7 +828,7 @@ export const ParticipantesStyle = styled.div`
 
 export const CirclesStyle = styled.div`
     .circles{
-            background-color: #F7F7F7;
+            background-color: #F9F9F9;
             display: flex;
             justify-content: space-between;
         }
@@ -869,6 +869,12 @@ export const ModalContainer = styled.div`
         }
     }
 
+    .p-apresentacao > p{
+        color: #494C46;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
   .close{
     position: absolute;
     top: 1rem;
@@ -906,13 +912,15 @@ export const ModalContainer = styled.div`
   .fileContainer{
     display: flex;
     align-items: center;
+    border: 2px solid #808080;
+    border-radius: 5px;
 
     input{
         border: 2px solid #808080;
         color: #707070;
     }
 
-    input[type="file"]::file-selector-button{
+    .custom-file-upload{
         background-color: #555555;
         color: #ffffff;
         padding: 0.5rem 1rem;
@@ -920,11 +928,21 @@ export const ModalContainer = styled.div`
         cursor: pointer;
         font-size: 0.9rem;
         border: none;
+        margin-left: 15px;
+    }
+
+    input[type="file"]{
+        display: none;
+    }
+
+    p{
+        margin-top: 15px;
+        padding-left: 20px;
     }
   }
 
   p{
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     font-size: 0.9rem;
     color: #707070;
   }

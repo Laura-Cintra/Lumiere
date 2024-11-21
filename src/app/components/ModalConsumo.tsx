@@ -1,13 +1,16 @@
+import conta from "@/assets/conta.png";
 import { ModalContainer, ModalOverlay, NavButton, SetasContainer } from "@/styles/styled";
 import { ModalConsumoProps } from "@/types";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import conta from "@/assets/conta.png";
 
-export default function ModalConsumo ({ months, onClose }: ModalConsumoProps){
+export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
+  const [currentModalIndex, setCurrentModalIndex] = useState(0);
+  const [consumoData, setConsumoData] = useState(
+    months.map(() => ({ kwh: "", valor: "", imagem: null as File | null }))
+  );
 
-  const [currentModalIndex, setCurrentModalIndex] = useState(0); // Rastreia o modal atual
   const isFirstModal = currentModalIndex === 0;
   const isLastModal = currentModalIndex === months.length - 1;
 
@@ -19,24 +22,58 @@ export default function ModalConsumo ({ months, onClose }: ModalConsumoProps){
     if (!isFirstModal) setCurrentModalIndex(currentModalIndex - 1);
   };
 
+  const handleInputChange = (field: string, value: string | File | null) => {
+    setConsumoData((prev) =>
+      prev.map((item, index) =>
+        index === currentModalIndex ? { ...item, [field]: value } : item
+      )
+    );
+  };
+
   return (
     <ModalOverlay>
       <ModalContainer>
-        <button className="close" onClick={onClose}>×</button>
+        <button className="close" onClick={onClose}>
+          ×
+        </button>
         <div className="titulo">
-            <Image src={conta} alt="ícone fatura" width={50} height={50}/>
-            <h2>Cadastrando o consumo do mês de <span>{months[currentModalIndex].toUpperCase()}</span></h2>
+          <Image src={conta} alt="ícone fatura" width={50} height={50} />
+          <h2>
+            Cadastrando o consumo do mês de{" "}
+            <span>{months[currentModalIndex].toUpperCase()}</span>
+          </h2>
         </div>
         <form>
           <label>KWH total do mês:</label>
-          <input type="number" placeholder="Digite o kWh" />
+          <input
+            type="number"
+            placeholder="Digite o kWh"
+            value={consumoData[currentModalIndex].kwh}
+            onChange={(e) => handleInputChange("kwh", e.target.value)}
+          />
 
           <label>Valor da conta:</label>
-          <input type="text" placeholder="Digite o valor (R$)" />
+          <input
+            type="text"
+            placeholder="Digite o valor (R$)"
+            value={consumoData[currentModalIndex].valor}
+            onChange={(e) => handleInputChange("valor", e.target.value)}
+          />
 
           <label>Insira a imagem da conta de luz:</label>
           <div className="fileContainer">
-            <input type="file" id="upload"/>
+            <label htmlFor="upload" className="custom-file-upload">Procurar</label>
+            <input
+              type="file"
+              id="upload"
+              onChange={(e) => handleInputChange("imagem", e.target.files?.[0] || null)}
+              key={consumoData[currentModalIndex].imagem ? consumoData[currentModalIndex].imagem?.name : "input-reset"}
+            />
+            {consumoData[currentModalIndex].imagem ? (
+              <p>{(consumoData[currentModalIndex].imagem as File).name}</p>
+            ) : (
+              <p>Nenhum arquivo selecionado.</p>
+            )}
           </div>
           <p>obs: essa imagem servirá apenas para autenticação. Depois ela será descartada.</p>
         </form>
@@ -50,8 +87,18 @@ export default function ModalConsumo ({ months, onClose }: ModalConsumoProps){
           </NavButton>
         </SetasContainer>
 
-        {isLastModal && <button type="submit" className="cadastrar-button">Cadastrar</button>}
+        {isLastModal && (
+          <button
+            type="button"
+            className="cadastrar-button"
+            onClick={() => {
+              onClose();
+            }}
+          >Cadastrar
+          </button>
+        )}
+
       </ModalContainer>
     </ModalOverlay>
   );
-};
+}
