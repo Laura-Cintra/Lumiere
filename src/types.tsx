@@ -18,3 +18,8 @@ export type RankingCardProps = {
     height: string;
     premio: string;
 };
+
+export type ModalConsumoProps = {
+    months: string[];
+    onClose: () => void;
+};
