@@ -713,24 +713,30 @@ export const SobreStyle = styled.main`
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-
-        @media (max-width: 768px) {
-            flex-wrap: wrap;
-        }
-    }
-
-    .container-compromissos{
         font-size: 1.1rem;
         color: #333;
         line-height: 1.6;
         max-width: 75%;
         margin: 0 auto;
+
+        @media (max-width: 768px) {
+            flex-wrap: wrap;
+            max-width: 50%;
+
+            div{
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            flex-wrap: wrap;
+            max-width: 80%;
+        }
     }
 `;
 
 export const ParticipantesStyle = styled.div`
-    margin: 40px auto 50px auto;
-    background-color: #F3F4F6;
+    margin: 30px auto 50px auto;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -814,6 +820,12 @@ export const ParticipantesStyle = styled.div`
         }
     }
 
+    @media screen and (max-width:800px) {
+        #part3{
+            margin-top: 30px;
+        }
+    }
+
     @media screen and (max-width:700px) {
         .icons{
             margin-left: 150px;
@@ -822,6 +834,10 @@ export const ParticipantesStyle = styled.div`
 
         #part1, #part2, #part3{
             padding-top: 30px;
+        }
+
+        #part2, #part3{
+            margin-top: 20px;
         }
     }
 `
