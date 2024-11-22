@@ -127,6 +127,8 @@ export default function Games() {
             {showModal && quizId && (
                 <ModalQuiz quizId={quizId} onClose={handleCloseModal} />
             )}
+
+            
         </main>
     );
 }

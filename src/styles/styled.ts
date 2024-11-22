@@ -1801,19 +1801,81 @@ export const RankingBoxDiv = styled.div`
     }
 `
 
-export const ModalQuizStyle = styled.div<{ open: boolean }>`
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
-  transition: background-color 0.3s ease;
-  visibility: ${({ open }) => (open ? "visible" : "hidden")};
-
-`
 
 export const ModalOverlayQuiz = styled.div<{ open: boolean }>`
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
+    transition: background-color 0.3s ease;
+    visibility: ${({ open }) => (open ? "visible" : "hidden")};
+`;
+
+export const ModalContent = styled.div<{ open: boolean }>`
+    text-align: center;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    transform: ${({ open }) => (open ? "scale(1)" : "scale(1.25)")};
+    opacity: ${({ open }) => (open ? 1 : 0)};
+    width: 90%;
+    max-width: 600px;
+    height: 300px; 
+
+    h3{
+      margin-bottom: 20px;
+      
+    }
+
+    img{
+        width: 100px;
+        height: 100px;
+    }
+
+`;
+
+export const CloseButton = styled.button`
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+    color: #9ca3af; 
+    background-color: white;
+    cursor: pointer;
+    &:hover {
+        background-color: #f9fafb; 
+        color: #4b5563; 
+    }
+`;
+
+export const AlternativesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+`;
+
+export const ModalOverlayMessage = styled.div<{ open: boolean }>`
   position: fixed;
   inset: 0;
   display: flex;
@@ -1824,7 +1886,7 @@ export const ModalOverlayQuiz = styled.div<{ open: boolean }>`
   visibility: ${({ open }) => (open ? "visible" : "hidden")};
 `;
 
-export const ModalContent = styled.div<{ open: boolean }>`
+export const ModalContentMessage = styled.div<{ open: boolean }>`
   background-color: white;
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -1835,7 +1897,7 @@ export const ModalContent = styled.div<{ open: boolean }>`
   opacity: ${({ open }) => (open ? 1 : 0)};
 `;
 
-export const CloseButton = styled.button`
+export const CloseButtonMessage = styled.button`
   position: absolute;
   top: 0.25rem;
   right: 0.5rem;
@@ -1849,3 +1911,113 @@ export const CloseButton = styled.button`
     color: #4b5563; 
   }
 `;
+
+export const ModalSuccessStyle = styled.div`
+
+   .containerText{
+      text-align: center;
+      width: 14rem;
+   }
+   .icon-success{
+      margin: 0 auto;
+      color: #5cb85c; 
+      font-size: 50px;
+   }
+
+   .title{
+   font-size: 1.125rem; 
+   font-weight: 900; 
+   color: #2d3748; 
+   margin-bottom: 10px;
+   }
+
+   .descricao{
+   color: #a0aec0; 
+   font-size: 0.875rem; 
+   margin-bottom: 10px;
+   }
+
+   .btnCancelar{
+      background-color: #f7fafc; 
+      color: #4a5568;  
+      width: 80%; 
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      
+
+      &:hover {
+         background-color: #edf2f7;
+      }
+   }
+
+   .btn{
+      display: flex;
+      gap: 0.5rem; 
+      
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem; 
+      font-weight: 600; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+      border-radius: 1rem; 
+      cursor: pointer;
+   }
+
+`
+
+export const ModalErrorStyle = styled.div`
+   .containerText{
+      text-align: center;
+      width: 14rem;
+   }
+   .icon-error{
+      margin: 0 auto;
+      color: #CC3300; 
+      font-size: 50px;
+   }
+
+   .title{
+   font-size: 1.125rem; 
+   font-weight: 900; 
+   color: #CC3300; 
+   margin-bottom: 10px;
+   }
+
+   .descricao{
+   color: #a0aec0; 
+   font-size: 0.875rem; 
+   margin-bottom: 10px;
+   }
+
+   .btnCancelar{
+      background-color: #f7fafc; 
+      color: #4a5568;  
+      width: 80%; 
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      
+
+      &:hover {
+         background-color: #edf2f7;
+      }
+   }
+
+   .btn{
+      display: flex;
+      gap: 0.5rem; 
+      
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem; 
+      font-weight: 600; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+      border-radius: 1rem; 
+      cursor: pointer;
+   }
+
+
+`
