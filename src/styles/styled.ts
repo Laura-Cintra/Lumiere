@@ -46,6 +46,52 @@ export const HeaderStyle = styled.header`
         display: flex;
         gap: 20px;
     }
+    .opcoes-logado{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        .pontuacao img{
+            width: 20px;
+            height: 20px;
+        }
+        .pontuacao{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .user{
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .itens-logado {
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            align-items: center;
+            gap: 4px;
+            margin-left: 20px;
+        }
+        .itens-logado a{
+            text-decoration: none;
+            color: black;
+            align-self: flex-start;
+        }
+
+        .pontuacao p {
+        /* margin: 0; */
+        font-size: 16px;
+        font-weight: bold;
+        color: #000; /* Cor do texto */
+        }
+        .pontuacao {
+            display: flex;
+            gap: 10px;
+        }
+
+
+
+    }
 
     @media screen and (max-width: 1040px) {
         
@@ -2150,3 +2196,56 @@ export const ModalErrorStyle = styled.div`
 
 
 `
+
+export const AlternativesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+`;
+
+export const ModalContent = styled.div<{ open: boolean }>`
+    text-align: center;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    transform: ${({ open }) => (open ? "scale(1)" : "scale(1.25)")};
+    opacity: ${({ open }) => (open ? 1 : 0)};
+    width: 90%;
+    max-width: 600px;
+    height: 300px; 
+    h3{
+      margin-bottom: 20px;
+      
+    }
+    img{
+        width: 100px;
+        height: 100px;
+    }
+`;
+
+export const ModalOverlayQuiz = styled.div<{ open: boolean }>`
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
+    transition: background-color 0.3s ease;
+    visibility: ${({ open }) => (open ? "visible" : "hidden")};
+`;

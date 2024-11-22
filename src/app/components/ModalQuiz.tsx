@@ -1,3 +1,5 @@
+"use client"
+
 import { AlternativesContainer, CloseButton, ModalContent, ModalOverlayQuiz } from "@/styles/styled";
 import { useEffect, useState } from "react";
 import trofeu from "@/assets/trofeu.png"
@@ -8,6 +10,7 @@ import Image from "next/image";
 type ModalQuizProps = {
     quizId: number;
     onClose: () => void;
+    idUsuario?: number ;
 };
 
 type Alternativa = {
@@ -30,7 +33,7 @@ type ItemAPI = {
     resposta_certa: string;
 };
 
-export default function ModalQuiz({ quizId, onClose }: ModalQuizProps) {
+export default function ModalQuiz({ quizId, onClose, idUsuario }: ModalQuizProps) {
     const [perguntas, setPerguntas] = useState<Pergunta[]>([]);
     const [indiceAtual, setIndiceAtual] = useState(0);
     const [acertos, setAcertos] = useState(0);
@@ -48,10 +51,12 @@ export default function ModalQuiz({ quizId, onClose }: ModalQuizProps) {
   }, [isFinished, acertos]);
 
     useEffect(() => {
+      console.log()
         const fetchPerguntas = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/quizresource/buscarPerguntas/${quizId}`);
-                if (!response.ok) {
+                const response2 = await fetch(`http://localhost:8080/rankingresource/inserirRanking`);
+                if (!response.ok || !response2.ok) {
                     throw new Error(`Erro na requisição: ${response.statusText}`);
                 }
                 const data = await response.json();
@@ -66,7 +71,7 @@ export default function ModalQuiz({ quizId, onClose }: ModalQuizProps) {
                 }));
                 setPerguntas(perguntasFormatadas);
             } catch (error) {
-                setErro("Erro ao carregar perguntas. Tente novamente mais tarde.", error);
+                setErro("Erro ao carregar perguntas. Tente novamente mais tarde."+ error);
             } finally {
                 setCarregando(false);
             }
@@ -87,19 +92,24 @@ export default function ModalQuiz({ quizId, onClose }: ModalQuizProps) {
     };
 
     const handleRegister = () => {
-        fetch("http://localhost:8080/quizresource/registrarResposta", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                quant_acertos: acertos,
-                id_usuario: 1,
-                id_quiz: quizId,
-            }),
-        })
-            .then((res) => res.json())
-            .then(() => onClose())
-            .catch((error) => console.error("Erro ao registrar resposta:", error));
-    };
+      fetch("http://localhost:8080/quizresource/registrarResposta", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+              quant_acertos: acertos,
+              id_usuario: idUsuario,
+              id_quiz: quizId,
+          }),
+      })
+          .then((res) => res.json())
+          .then(() => {
+              // Adiciona um atraso de 3 segundos (3000 ms) antes de fechar
+              setTimeout(() => {
+                  onClose();
+              }, 3000);
+          })
+          .catch((error) => console.error("Erro ao registrar resposta:", error));
+  };
 
     return (
       <div>

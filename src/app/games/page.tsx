@@ -125,7 +125,7 @@ export default function Games() {
 
             {/* Modal do quiz */}
             {showModal && quizId && (
-                <ModalQuiz quizId={quizId} onClose={handleCloseModal} />
+                <ModalQuiz quizId={quizId} onClose={handleCloseModal} idUsuario={user?.id_usuario}/>
             )}
 
             

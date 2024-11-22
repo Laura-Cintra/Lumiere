@@ -4,12 +4,13 @@
 import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 
 import logocerta from "@/assets/logo_certa.png";
 import person from "@/assets/person.png";
-
+import userLogin from "@/assets/user-logado.png"
+import wattscoins from "@/assets/wattscoins.png"
 
 import ranking from "@/assets/ranking.png";
 import CardPerfilResumo from "../perfil/CardPerfilResumo";
@@ -21,6 +22,7 @@ export default function Cabecalho() {
     const [cardPerfil, setCardPerfil] = useState<boolean>(false);
     const abasNavegacaoRef = useRef<HTMLDivElement>(null);
     const { user } = useContext(AuthContext);
+    const [pontuacao, setPontuacao] = useState<number>(0)
 
 
     const togglePerfil = () => {
@@ -53,6 +55,28 @@ export default function Cabecalho() {
         }
         return ''; // Caso o nome não exista ou esteja vazio, retorna uma string vazia
       }
+    
+       // Carregar a pontuação do usuário
+    useEffect(() => {
+        const getPontuacao = async () => {
+            if (!user?.id_usuario) return;
+            try {
+                const response = await fetch(`http://localhost:8080/usuarioresource/buscarPontuacaoUsuario/${user.id_usuario}`);
+                if (!response.ok) {
+                    throw new Error(`Erro na requisição: ${response.statusText}`);
+                }
+                const ponts = await response.json();
+                setPontuacao(ponts);
+            } catch (error) {
+                console.log("Erro ao carregar pontuação. Tente novamente mais tarde. " + error);
+            }
+        };
+
+        if (user?.id_usuario) {
+            getPontuacao();
+        }
+    }, [user]);  
+    
 
 
     return (
@@ -85,17 +109,36 @@ export default function Cabecalho() {
                     <Link href="/sobre-nos">SOBRE NÓS</Link>
                     <Link href="/games">GAMES</Link>
                 </nav>
-                <div className="opcoes">
-                    <Link href="/ranking">
-                        <Image src={ranking} alt="icone do ranking" />
-                    </Link>
-                    <Link href="">
-                        <Image src={person} alt="icone do perfil" onClick={togglePerfil} />
-                    </Link>
-                    {
-                        user?.nome === "" ? <Link href="/login">Login</Link> : <Link href="/login">{pegarPrimeiroNome()}</Link>
-                    }
-                </div>
+                {user?.nome === "" ? (
+                    <div className="opcoes">
+                        <Link href="/ranking">
+                            <Image src={ranking} alt="icone do ranking" />
+                        </Link>
+                        <Link href="/login">
+                            <Image src={person} alt="icone do perfil" />
+                        </Link>
+                        <Link href="/login">Login</Link>
+                    </div>
+                ) : (
+                    <div className="opcoes-logado">
+                        <div>
+                            <Link href="/ranking">
+                                <Image src={ranking} alt="icone do ranking" />
+                            </Link>
+                        </div>
+                        <div className="itens-logado">
+                            <Link href="/login">{pegarPrimeiroNome()}</Link>
+                            <div className="pontuacao">
+                                <Image src={wattscoins} alt="icone wattscoins" />
+                                <p>{pontuacao}</p>
+                            </div>
+                        </div>
+                        <div className="userCard">
+                            <Image src={userLogin} alt="icone de usuário" className="user" onClick={togglePerfil} />
+                        </div>
+                    </div>
+                )}
+
 
                 {isModalOpen && (
                     <ModalNovoConsumo
