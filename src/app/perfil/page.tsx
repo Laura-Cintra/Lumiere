@@ -6,6 +6,7 @@ import DadosUser from "./DadosUser";
 import { MdLogout } from "react-icons/md";
 
 export default function Perfil(){
+
     return(
         <PerfilContainerStyle>
             <FundoStyle>
