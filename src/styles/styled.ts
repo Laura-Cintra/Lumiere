@@ -1801,6 +1801,7 @@ export const RankingBoxDiv = styled.div`
     }
 `
 
+
 export const Overlay = styled.div<{ open: boolean }>`
     position: fixed;
     top: 0;
@@ -1875,4 +1876,51 @@ export const CancelButton = styled.button`
     &:hover {
         background-color: darkred;
     }
+=======
+export const ModalQuizStyle = styled.div<{ open: boolean }>`
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
+  transition: background-color 0.3s ease;
+  visibility: ${({ open }) => (open ? "visible" : "hidden")};
+
+`
+
+export const ModalOverlayQuiz = styled.div<{ open: boolean }>`
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
+  transition: background-color 0.3s ease;
+  visibility: ${({ open }) => (open ? "visible" : "hidden")};
 `;
+
+export const ModalContent = styled.div<{ open: boolean }>`
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+  transform: ${({ open }) => (open ? "scale(1)" : "scale(1.25)")};
+  opacity: ${({ open }) => (open ? 1 : 0)};
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  color: #9ca3af; 
+  background-color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: #f9fafb; 
+    color: #4b5563; 
+  }
