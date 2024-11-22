@@ -100,7 +100,7 @@ export default function DadosUser(){
             </div>
             <div className="informacoes">
                 <h2>{usuario.nome}</h2>
-                <p>{usuario.nome}</p>
+                <p>{usuario.nick_name}</p>
             </div>
             <div className="informacoes-extras">
                 <p>{usuario.quant_pontos} WattsCoins</p>
