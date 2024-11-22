@@ -14,7 +14,7 @@ import { AuthContext } from "@/context";
 type ModalQuizProps = {
   quizId: number;
   onClose: () => void;
-  idUsuario?: number;
+  idUsuario: number;
 };
 
 type Alternativa = {
