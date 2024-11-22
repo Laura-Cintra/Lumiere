@@ -10,8 +10,8 @@ export default function Ranking() {
 		</RankingBox>
 		<h2>Como funciona: </h2>
 		<ul className='ul_ranking'>
-			<li>Melhoria no consumo: Quanto mais você reduzir em comparação ao mês anterior, maior será sua pontuação.</li>
-			<li>Engajamento: Participe de quizzes e acumule pontos extras no ranking.</li>
+			<li><span>✧</span> Melhoria no consumo: Quanto mais você reduzir em comparação ao mês anterior, maior será sua pontuação.</li>
+			<li><span>✧</span> Engajamento: Participe de quizzes e acumule pontos extras no ranking.</li>
 		</ul>
 	</RankingDiv>
   )

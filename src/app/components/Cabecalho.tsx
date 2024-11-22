@@ -4,7 +4,7 @@
 import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 
 import logocerta from "@/assets/logo_certa.png";
@@ -14,11 +14,13 @@ import person from "@/assets/person.png";
 import ranking from "@/assets/ranking.png";
 import CardPerfilResumo from "../perfil/CardPerfilResumo";
 import ModalNovoConsumo from "./ModalNovoConsumo";
+import { AuthContext } from "@/context";
 
 export default function Cabecalho() {
     const [menu, setMenu] = useState<boolean>(false);
     const [cardPerfil, setCardPerfil] = useState<boolean>(false);
     const abasNavegacaoRef = useRef<HTMLDivElement>(null);
+    const { user } = useContext(AuthContext);
 
 
     const togglePerfil = () => {
@@ -43,6 +45,14 @@ export default function Cabecalho() {
     const handleCloseModal = () => {
         setIsModalOpen(false); // Fecha o modal
     };
+
+    function pegarPrimeiroNome(): string {
+        if (user?.nome) {
+          const nomes = user.nome.split(" "); // Divide o nome completo em partes
+          return nomes[0]; // Retorna o primeiro nome
+        }
+        return ''; // Caso o nome não exista ou esteja vazio, retorna uma string vazia
+      }
 
 
     return (
@@ -76,13 +86,15 @@ export default function Cabecalho() {
                     <Link href="/games">GAMES</Link>
                 </nav>
                 <div className="opcoes">
-                    <Link href="">
+                    <Link href="/ranking">
                         <Image src={ranking} alt="icone do ranking" />
                     </Link>
                     <Link href="">
                         <Image src={person} alt="icone do perfil" onClick={togglePerfil} />
                     </Link>
-                    <Link href="/login">Login</Link>
+                    {
+                        user?.nome === "" ? <Link href="/login">Login</Link> : <Link href="/login">{pegarPrimeiroNome()}</Link>
+                    }
                 </div>
 
                 {isModalOpen && (
