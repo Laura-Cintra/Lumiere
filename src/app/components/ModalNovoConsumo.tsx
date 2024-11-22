@@ -49,6 +49,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
                         <input
                             type="file"
                             id="upload"
+                            accept=".pdf"
                             onChange={(e) => handleInputChange("imagem", e.target.files?.[0] || null)}
                             key={consumoData.imagem ? consumoData.imagem?.name : "input-reset"}
                         />
