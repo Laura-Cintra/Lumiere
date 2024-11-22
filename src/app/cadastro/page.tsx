@@ -65,8 +65,9 @@ export default function Cadastro() {
 		try{
 			const response = await fetch("http://localhost:8080/usuarioresource/cadastroUsuario", cabecalho)
 			if (response.ok){
-				const response2 = await fetch(`http://localhost:8080/usuarioresource/buscaIdUsuario/${cadastro.email}`);
-				if (response2.ok) {
+				const response2 = await fetch(`http://localhost:8080/usuarioresource/exibirUsuarioCompleto/${cadastro.email}`);
+				const response3 = await fetch("http://localhost:8080/rankingresource/inserirRanking")
+				if (response2.ok && response3.ok) {
 					const idUsuario = await response2.json();
 					  const user = {
 						id_usuario: idUsuario,

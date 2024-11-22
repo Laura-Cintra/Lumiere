@@ -39,7 +39,7 @@ export default function Login() {
         const response2 = await fetch(`http://localhost:8080/usuarioresource/buscaIdUsuario/${login.email}`);
         if (response2.ok) {
           const idUsuario = await response2.json();
-          const response3 = await fetch(`http://localhost:8080/usuarioresource/exibirUsuarioResumo/${idUsuario}`);
+          const response3 = await fetch(`http://localhost:8080/usuarioresource/exibirUsuarioCompleto/${login.email}`);
           if (response3.ok) {
             const data = await response3.json();
             const user = {

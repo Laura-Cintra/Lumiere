@@ -356,6 +356,15 @@ export const ContainerDestaqueGame = styled.div`
             width: 520px;
         }
     }
+    @media screen and (max-width: 540px){
+        .img-destaque{
+            width: 420px;
+        }
+        p{
+            font-size: 26px;
+            width: 420px;
+        }
+    }
 
 `
 
