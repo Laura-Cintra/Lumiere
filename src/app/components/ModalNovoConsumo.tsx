@@ -7,7 +7,7 @@ import { AuthContext } from "@/context";
 import { useRouter } from "next/navigation";
 
 export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
-  const { user, updatePontuacao } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [consumoData, setConsumoData] = useState({
     kwh: "",
@@ -73,7 +73,6 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
         );
         if(response_rank.ok && insere_rank.ok){
           console.log("Ranking atualizado com sucesso!")
-          await updatePontuacao(); // Atualiza a pontuação no contexto
         }
         else{
           console.log("Erro ao atualizar ranking")

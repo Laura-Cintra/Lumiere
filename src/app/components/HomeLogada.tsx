@@ -38,10 +38,9 @@ export default function HomeDashboard() {
         );
 
         if (response.ok) {
-          const { exists } = await response.json();
-          setIsModalOpen(!exists);
+          setIsModalOpen(true);
         } else {
-          console.error("Erro ao verificar o registro de consumo.");
+          setIsModalOpen(false)
         }
       } catch (error) {
         console.error("Erro ao fazer requisição:", error);
