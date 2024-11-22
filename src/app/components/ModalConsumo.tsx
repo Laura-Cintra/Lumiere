@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useContext } from "react";
 import conta from "@/assets/conta.png";
 import { ModalContainer, ModalOverlay, NavButton, SetasContainer } from "@/styles/styled";
@@ -5,12 +7,15 @@ import { ModalConsumoProps } from "@/types";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { AuthContext } from "@/context";
+import { useRouter } from "next/navigation";
 
 export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
   const [currentModalIndex, setCurrentModalIndex] = useState(0);
   const [consumoData, setConsumoData] = useState(
     months.map(() => ({ kwh: "", valor: "", imagem: null as File | null }))
   );
+
+  const navigate = useRouter();
 
   const { user } = useContext(AuthContext);
 
@@ -47,36 +52,63 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
       idUsuario: user.id_usuario,
     }));
 
-    dataToSend.forEach(async (consumo, index) => {
-      try {
-        const response = await fetch(
-          "http://localhost:8080/consumoresource/inserirNovoConsumo",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(consumo),
+    const errors: string[] = []; // Para acumular erros
+
+  try {
+    await Promise.all(
+      dataToSend.map(async (consumo, index) => {
+        try {
+          const response = await fetch(
+            "http://localhost:8080/consumoresource/inserirNovoConsumo",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(consumo),
+            }
+          );
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            errors.push(`Erro no mês ${months[index].name}: ${errorData.message}`);
+          } else {
+            console.log(`Consumo do mês ${months[index].name} enviado com sucesso!`);
           }
-        );
-
-        if (response.ok) {
-          console.log(`Consumo do mês ${months[index].name} enviado com sucesso!`);
-        } else {
-          const errorData = await response.json().catch(() => null);
-          console.error(`Erro ao enviar consumo do mês ${months[index].name}:`, errorData || response.statusText);
+        } catch (error) {
+          errors.push(`Erro ao enviar o mês ${months[index].name}: ${error}`);
         }
-      } catch (error) {
-        console.error(
-          `Erro ao conectar ao servidor ao enviar o mês ${months[index].name}:`,
-          error
-        );
-      }
-    });
+      })
+    );
 
-    alert("Meses cadastrados com sucesso!");
+    if (errors.length > 0) {
+      alert(`Alguns meses não foram cadastrados:\n${errors.join("\n")}`);
+    } else {
+      alert("Todos os meses foram cadastrados com sucesso!");
+      const response_rank = await fetch(
+        `http://localhost:8080/usuarioresource/atualizaPorcentagemStatus/${user.id_usuario}`,
+        {
+          method: "PUT"
+        }
+      );
+      const insere_rank = await fetch(
+        `http://localhost:8080/rankingresource/inserirRanking`
+      );
+      if(response_rank.ok && insere_rank.ok){
+        console.log("Ranking atualizado com sucesso!")
+      }
+      else{
+        console.log("Erro ao atualizar ranking")
+      }
+      navigate.push('/');
+    }
+  } catch (error) {
+    console.error("Erro geral ao enviar os dados de consumo:", error);
+    alert("Erro ao processar as requisições. Tente novamente.");
+  } finally {
     onClose();
-  };
+  }
+};
 
   return (
     <ModalOverlay>

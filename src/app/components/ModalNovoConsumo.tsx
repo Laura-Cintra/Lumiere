@@ -4,6 +4,7 @@ import { ModalConsumoProps } from "@/types";
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/context";
+import { useRouter } from "next/navigation";
 
 export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
   const { user } = useContext(AuthContext);
@@ -13,6 +14,8 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
     valor: "",
     imagem: null as File | null,
   });
+
+  const navigate = useRouter();
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -44,7 +47,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            dataConsumo: months[0]?.value, // Usando o valor formatado do primeiro mês
+            dataConsumo: months[0]?.value,
             consumoKwh: parseInt(kwh, 10),
             custoConta: parseFloat(valor.replace(",", ".")),
             idUsuario: user.id_usuario,
@@ -57,10 +60,26 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
         setErrorMessage("");
         alert("Mês cadastrado com sucesso!");
         setConsumoData({ kwh: "", valor: "", imagem: null });
+        navigate.push('/')
         onClose();
+        const response_rank = await fetch(
+          `http://localhost:8080/usuarioresource/atualizaPorcentagemStatus/${user.id_usuario}`,
+          {
+            method: "PUT"
+          }
+        );
+        const insere_rank = await fetch(
+          `http://localhost:8080/rankingresource/inserirRanking`
+        );
+        if(response_rank.ok && insere_rank.ok){
+          console.log("Ranking atualizado com sucesso!")
+        }
+        else{
+          console.log("Erro ao atualizar ranking")
+        }
       } else {
         const errorData = await response.json();
-        setErrorMessage(errorData.message || "Erro ao cadastrar consumo.");
+        alert(`${errorData.message}`)
       }
     } catch (error) {
       setErrorMessage(`Erro ao conectar ao servidor. ${error}`);
