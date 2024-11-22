@@ -27,9 +27,29 @@ export default function CardPerfilResumo({ BgRound }: RoundStyleColor) {
     });
 
     const { user } = useContext(AuthContext);
+    const [imgURL, setImgURL] = useState<string>("");
 
     // Verifique se BgRound está definido e se não, atribua um valor padrão
     const [bgRoundColor, setBgRoundColor] = useState<string>(BgRound || "#CFD426");
+
+    const fetchFotoData = async (userEmail: string) => {
+        try {
+          const response = await fetch(`http://localhost:8080/usuarioresource/exibirFoto/${userEmail}`);
+          if (response.ok) {
+            const dadosFoto = await response.json();
+            if (dadosFoto.foto !== " ") {
+              setImgURL(dadosFoto.foto);
+              console.log(dadosFoto.foto);
+            }
+          } else {
+            const errorDados = await response.json();
+            alert(errorDados.message || "Ocorreu um erro");
+          }
+        } catch (error) {
+          alert("Erro ao exibir o usuário");
+          console.error("Erro ao exibir o usuário", error);
+        }
+      };
 
     useEffect(() => {
         const buscarDados = async () => {
@@ -59,6 +79,7 @@ export default function CardPerfilResumo({ BgRound }: RoundStyleColor) {
 
         if (user?.id_usuario) {
             buscarDados();
+            fetchFotoData(user.email)
         }
     }, [user?.id_usuario]);
 
@@ -72,7 +93,12 @@ export default function CardPerfilResumo({ BgRound }: RoundStyleColor) {
 
             <div className="sla">
                 <div className="foto">
-                    <Image src={userLogado} alt="Foto do perfil" className="foto-perfil" />
+                        {imgURL ? (
+                                <Image src={imgURL} alt="Imagem Perfil" height={200} width={203} layout="intrinsic" className="imgFoto"/>
+                            ) : (
+                                <Image src={userLogado} alt="perfil" className="foto-perfil"/>
+                        )}
+                    {/* <Image src={userLogado} alt="Foto do perfil" className="foto-perfil" /> */}
                     <div className="round">
                         <Image src={folhaStatus} alt="icone de folha" className="folha" />
                     </div>

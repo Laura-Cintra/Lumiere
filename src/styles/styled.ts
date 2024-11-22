@@ -59,10 +59,15 @@ export const HeaderStyle = styled.header`
             justify-content: center;
             align-items: center;
         }
-        .user{
+        .user, .imgFoto{
             width: 40px;
             height: 40px;
             cursor: pointer;
+        }
+        .imgFoto{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
         }
         .itens-logado {
             display: flex;
@@ -1589,9 +1594,20 @@ export const DadosUserStyle = styled.div`
 input[type=file]::-webkit-file-upload-button{
     cursor: pointer;
 }
-
-.alterar-foto{
-    margin-top: 10px;
+.btn-alterar-foto{
+    background-color: #E3BD3C;
+      width: 100px;
+      height: 30px;
+      border-radius: 7px;
+      font-size: 18px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      margin: auto;
+      margin-top: 7px;
+      margin-bottom: 7px;
+      cursor:pointer;
+      border: none;
 }
 
 .informacoes{
@@ -1680,6 +1696,14 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
         height: 100px;
         margin-top: 20px;
         border: 2px solid black;
+        border-radius: 50%;
+    }
+
+    .imgFoto{
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: auto;
         border-radius: 50%;
     }
 

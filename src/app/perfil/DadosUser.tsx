@@ -4,7 +4,6 @@ import { DadosUserStyle } from "@/styles/styled"
 import Image from "next/image"
 import { IoCameraOutline } from "react-icons/io5";
 import { FaRegTrashAlt } from "react-icons/fa";
-
 //imagens
 import user_foto from "@/assets/user.png"
 import { useContext, useEffect, useRef, useState } from "react";
@@ -133,7 +132,7 @@ export default function DadosUser() {
 
         const response = await fetch(`http://localhost:8080/usuarioresource/atualizaFoto/${user.email}`, cabecalho);
         if (response.ok) {
-          alert("Foto alterada com sucesso");
+            alert("Foto atualizada com sucesso!")
         } else {
           const errorData = await response.json();
           alert(errorData.message || "Erro ao atualizar a foto");
@@ -169,9 +168,9 @@ export default function DadosUser() {
       <form onSubmit={handleSubmit}>
         <div className="upload">
           {imgURL ? (
-            <Image src={imgURL} alt="Imagem do perfil" height={140} width={140} layout="intrinsic" />
+            <Image src={imgURL} alt="Imagem do perfil" height={170} width={170} layout="intrinsic" />
           ) : (
-            <Image src={user_foto} alt="fotoPerfil" />
+            <Image src={user_foto} alt="fotoPerfil" height={140} width={140}/>
           )}
 
           <div className="round">
@@ -199,6 +198,7 @@ export default function DadosUser() {
         <p>Esta ação não pode ser desfeita.</p>
         {error && <p className="texto_erro" style={{ color: "red" }}>{error}</p>}
       </Modal>
+      
     </DadosUserStyle>
   );
 }

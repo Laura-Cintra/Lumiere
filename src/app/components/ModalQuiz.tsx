@@ -150,6 +150,7 @@ export default function ModalQuiz({ quizId, onClose, idUsuario }: ModalQuizProps
             </ModalContent>
         </ModalOverlayQuiz>
 
+
       </div>
     );
 }

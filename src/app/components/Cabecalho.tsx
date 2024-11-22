@@ -21,6 +21,8 @@ export default function Cabecalho() {
     const abasNavegacaoRef = useRef<HTMLDivElement>(null);
     const { user } = useContext(AuthContext);
     const [pontuacao, setPontuacao] = useState<number>(0)
+    const [imgURL, setImgURL] = useState<string>("");
+
 
     const togglePerfil = () => {
         setCardPerfil(!cardPerfil); // Alterna o estado do card de perfil
@@ -50,6 +52,25 @@ export default function Cabecalho() {
         }
         return ''; // Caso o nome não exista ou esteja vazio, retorna uma string vazia
       }
+
+      const fetchFotoData = async (userEmail: string) => {
+        try {
+          const response = await fetch(`http://localhost:8080/usuarioresource/exibirFoto/${userEmail}`);
+          if (response.ok) {
+            const dadosFoto = await response.json();
+            if (dadosFoto.foto !== " ") {
+              setImgURL(dadosFoto.foto);
+              console.log(dadosFoto.foto);
+            }
+          } else {
+            const errorDados = await response.json();
+            alert(errorDados.message || "Ocorreu um erro");
+          }
+        } catch (error) {
+          alert("Erro ao exibir o usuário");
+          console.error("Erro ao exibir o usuário", error);
+        }
+      };
     
        // Carregar a pontuação do usuário
     useEffect(() => {
@@ -69,6 +90,7 @@ export default function Cabecalho() {
 
         if (user?.id_usuario) {
             getPontuacao();
+            fetchFotoData(user.email);
         }
     }, [user]);  
     
@@ -135,7 +157,12 @@ export default function Cabecalho() {
                             </div>
                         </div>
                         <div className="userCard">
-                            <Image src={userLogin} alt="icone de usuário" className="user" onClick={togglePerfil} />
+                            {imgURL ? (
+                                <Image src={imgURL} alt="Imagem Perfil" height={200} width={203} layout="intrinsic" className="imgFoto" onClick={togglePerfil}/>
+                            ) : (
+                                <Image src={userLogin} alt="perfil" onClick={togglePerfil}/>
+                            )}
+                        
                         </div>
                     </div>
                 )}
