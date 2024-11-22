@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { ApiResponse, ChartData } from "@/types";
-// import { ApexOptions } from "apexcharts";
 
-// Importa o ApexCharts dinamicamente (necessário para Next.js)
+// Importa o ApexCharts dinamicamente
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface Props {
@@ -37,9 +36,10 @@ const ConsumptionChart: React.FC<Props> = ({ userId }) => {
     },
   });
 
-  // Busca os dados da API
   useEffect(() => {
     if (!userId) return;
+
+    let isMounted = true; // Flag para verificar se o componente está montado
 
     const fetchData = async () => {
       try {
@@ -48,31 +48,36 @@ const ConsumptionChart: React.FC<Props> = ({ userId }) => {
         );
         const data: ApiResponse[] = await response.json();
 
-        const months = data.map((item) => item.mesAno); // Extrai os meses
-        const consumptions = data.map((item) => item.consumoKwh); // Extrai os consumos
+        if (isMounted) {
+          const months = data.map((item) => item.mesAno); // Extrai os meses
+          const consumptions = data.map((item) => item.consumoKwh); // Extrai os consumos
 
-        // Atualiza os dados do gráfico
-        setChartData((prevData) => ({
-          ...prevData,
-          series: [
-            {
-              name: "Consumo Mensal",
-              data: consumptions,
+          setChartData((prevData) => ({
+            ...prevData,
+            series: [
+              {
+                name: "Consumo Mensal",
+                data: consumptions,
+              },
+            ],
+            options: {
+              ...prevData.options,
+              xaxis: {
+                categories: months,
+              },
             },
-          ],
-          options: {
-            ...prevData.options,
-            xaxis: {
-              categories: months,
-            },
-          },
-        }));
+          }));
+        }
       } catch (error) {
         console.error("Erro ao buscar dados da API:", error);
       }
     };
 
     fetchData();
+
+    return () => {
+      isMounted = false; // Limpa a flag ao desmontar
+    };
   }, [userId]);
 
   return (
@@ -80,9 +85,9 @@ const ConsumptionChart: React.FC<Props> = ({ userId }) => {
       <h2>Consumo de KW/h por Mês</h2>
       {chartData.series.length > 0 && (
         <Chart
-          options={chartData.options} // Corrigido para ApexOptions
-          series={chartData.series} // Série de dados
-          type="area" // Tipo do gráfico
+          options={chartData.options}
+          series={chartData.series}
+          type="area"
           height={350}
         />
       )}
