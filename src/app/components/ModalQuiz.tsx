@@ -51,7 +51,6 @@ export default function ModalQuiz({ quizId, onClose, idUsuario }: ModalQuizProps
   }, [isFinished, acertos]);
 
     useEffect(() => {
-      console.log()
         const fetchPerguntas = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/quizresource/buscarPerguntas/${quizId}`);

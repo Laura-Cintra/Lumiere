@@ -93,3 +93,10 @@ export type ApiResponse = {
     options: ApexOptions; // Usa o tipo ApexOptions diretamente
   }
 
+export type UserResumoType = {
+    email: string;
+    nome: string;
+    posicao: number;
+    quant_pontos: number;
+    status: string;
+}
