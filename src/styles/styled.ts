@@ -1166,6 +1166,10 @@ export const DivCadastroDir = styled.div`
         margin-right: 10px;
     }
 
+    .texto_erro {
+        text-align: center;
+    }
+
     button {
         margin: 0 auto;
         border: 2px solid #E3BD3C;
@@ -1686,7 +1690,6 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
     }
     @media screen and (max-width:915px){
         margin-left: 65%;
-        /* margin-top: -10px; */
     }
     @media screen and (max-width:842px){
         margin-left: 55%;
@@ -1710,7 +1713,7 @@ export const DashboardStyle = styled.div`
         margin-bottom: 30px;
         padding: 10px 20px;
     }
-`
+`;
 
 export const RankingDiv = styled.div`
     display: flex;
@@ -1718,164 +1721,273 @@ export const RankingDiv = styled.div`
     justify-content: center;
     align-items: center;
     h2 {
-        font-size: 42px;
-        margin-bottom: 36px;
+        font-size: 2.2rem;
+        color: #222;
+        text-align: center;
+        padding: 0 20px 30px 20px;
     }
     .ul_ranking {
-        font-size: 28px;
-        max-width: 70%;
+        font-size: 1.6rem;
+        max-width: 80%;
+        list-style: none;
+        padding: 0;
+        margin: 0;
         li {
-            margin-bottom: 14px;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 1.2rem;
+            max-width: 80%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        span{
+            color: #FDB813;
+            font-weight: bold;
         }
     }
 
-`
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 2rem;
+        }
+
+        .ul_ranking {
+            font-size: 1.4rem;
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        .ul_ranking {
+            font-size: 1.2rem;
+            width: 100%;
+        }
+    }
+`;
 
 export const RankingBoxDiv = styled.div`
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    width: 70%;
+    max-width: 800px;
+
     h1 {
-        margin: 90px 0px 85px;
-        font-size: 42px;
-        span {
-            color: #FDB813;
-        }
+    font-size: 2.2rem;
+    color: #222;
+    text-align: center;
+    padding: 0 20px 30px 20px;
+
+    span {
+      color: #f7c945;
+    }
+  }
+
+    ul {
+        border: 1px solid #0964b0;
+        border-radius: 10px;
+        width: 80%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
 
-    ul{
-        border: 1px solid #0964B0;
-        border-radius: 5px;
-        display: flex;
-        justify-content: center;
-        align-items: start;
-        flex-direction: column;
-    }
-    .underline_box {
-        border: 2px solid #FDB813;
-        min-width: 120%;
-        margin: 3rem 0;
-    }
     .ranking_linha {
-        display: grid;
-        width: 100%;
-        grid-template-columns: 3;
-        grid-template-rows: 1;
+        display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid #0964B0;
-        padding: 0.8rem 1rem;
-        list-style: none;
-        .medalha {
-            grid-column: 1;
-        }
-        .pic_nome_pontos{
-            grid-column: 2;
-            min-width: max-content;
-            display: flex;
-            justify-content: start;
-            
-        }
-        .foto {
-            margin: 0 1rem;
-        }
-        .nome_pontos {
-            font-size: 1.4rem;
-        }
-        .pontos_span {
-            color: #FDB813;
-            font-weight: bold;
-        }
-        .porc_consumo {
-            text-align: end;
-            grid-column: 3;
-            font-weight: bold;
-            padding-left: 10px;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 1rem;
+        font-family: Arial, sans-serif;
+
+        &:last-child {
+            border-bottom: none;
         }
 
-        .consumo_span {
-            color: #0964B0;
-            font-weight: bold;
+        .medalha {
+            width: 42px;
+            height: auto;
+            margin-right: 1rem;
         }
-       
+
+        .pic_nome_pontos {
+            display: flex;
+            align-items: center;
+            flex: 1;
+
+            .foto {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                margin-right: 1rem;
+            }
+
+            .nome_pontos {
+                display: flex;
+                flex-direction: column;
+
+                p {
+                    margin: 0;
+                }
+
+                .nome_usuario{
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                }
+
+                .pontos_span {
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    color: #fdb813;
+                }
+            }
+        }
+
+        .porc_consumo {
+            font-size: 1.1rem;
+            padding-left: 20px;
+
+            .consumo_span {
+                font-size: 1.3rem;
+                color: #0964b0;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .underline_box {
+        border: 2px solid #fdb813;
+        width: 100%;
+        margin: 3rem 0;
+    }
+
+    @media (max-width: 800px) {
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .ranking_linha {
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 1rem;
+
+            .medalha {
+                width: 40px;
+            }
+
+            .pic_nome_pontos {
+                flex-direction: row;
+
+                .foto {
+                    width: 50px;
+                    height: 50px;
+                }
+
+                .nome_pontos {
+                    .nome_usuario {
+                        font-size: 1.1rem;
+                    }
+
+                    .pontos_span {
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            .porc_consumo {
+                font-size: 1rem;
+                padding-left: 0;
+
+                .consumo_span {
+                    font-size: 1.2rem;
+                }
+            }
+        }
     }
 `
 
-
-export const ModalOverlayQuiz = styled.div<{ open: boolean }>`
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
-    transition: background-color 0.3s ease;
-    visibility: ${({ open }) => (open ? "visible" : "hidden")};
+export const Overlay = styled.div<{ open: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: visibility 0s, opacity 0.5s linear;
+  opacity: ${props => (props.open ? 1 : 0)};
+  visibility: ${props => (props.open ? 'visible' : 'hidden')};
+  z-index: 1000;
 `;
 
-export const ModalContent = styled.div<{ open: boolean }>`
-    text-align: center;
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: 2.5rem;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    position: relative;
-    transition: all 0.3s ease;
-    transform: ${({ open }) => (open ? "scale(1)" : "scale(1.25)")};
-    opacity: ${({ open }) => (open ? 1 : 0)};
-    width: 90%;
-    max-width: 600px;
-    height: 300px; 
-
-    h3{
-      margin-bottom: 20px;
-      
-    }
-
-    img{
-        width: 100px;
-        height: 100px;
-    }
-
+export const Content = styled.div<{ open: boolean }>`
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(${props => (props.open ? 1 : 0.9)});
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: ${props => (props.open ? 1 : 0)};
+  z-index: 1001;
+  width: 90%;
+  max-width: 500px;
 `;
 
 export const CloseButton = styled.button`
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem;
-    border-radius: 0.375rem;
-    color: #9ca3af; 
-    background-color: white;
-    cursor: pointer;
-    &:hover {
-        background-color: #f9fafb; 
-        color: #4b5563; 
-    }
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: gray;
+  transition: color 0.3s;
+
+  &:hover {
+    color: darkred;
+  }
 `;
 
-export const AlternativesContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
+export const ActionButton = styled.button`
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
 
-    button {
-        padding: 0.5rem 1rem;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        border-radius: 0.375rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
-
-        &:hover {
-            background-color: #0056b3;
-        }
-    }
+  &:hover {
+    background-color: darkgreen;
+  }
 `;
 
-export const ModalOverlayMessage = styled.div<{ open: boolean }>`
+export const CancelButton = styled.button`
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darkred;
+  }
+`;
+
+export const ModalQuizStyle = styled.div<{ open: boolean }>`
   position: fixed;
   inset: 0;
   display: flex;
@@ -1884,31 +1996,48 @@ export const ModalOverlayMessage = styled.div<{ open: boolean }>`
   background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
   transition: background-color 0.3s ease;
   visibility: ${({ open }) => (open ? "visible" : "hidden")};
-`;
 
-export const ModalContentMessage = styled.div<{ open: boolean }>`
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  position: relative;
-  transition: all 0.3s ease;
-  transform: ${({ open }) => (open ? "scale(1)" : "scale(1.25)")};
-  opacity: ${({ open }) => (open ? 1 : 0)};
-`;
+  @media(max-width: 480px) {
+    h1 {
+      font-size: 1.6rem;
+    }
 
-export const CloseButtonMessage = styled.button`
-  position: absolute;
-  top: 0.25rem;
-  right: 0.5rem;
-  padding: 0.25rem;
-  border-radius: 0.375rem;
-  color: #9ca3af; 
-  background-color: white;
-  cursor: pointer;
-  &:hover {
-    background-color: #f9fafb; 
-    color: #4b5563; 
+    .ranking_linha {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .medalha {
+        width: 30px;
+      }
+
+      .pic_nome_pontos {
+        flex-direction: column;
+
+        .foto {
+          width: 45px;
+          height: 45px;
+        }
+
+        .nome_pontos {
+          .nome_usuario {
+            font-size: 1rem;
+          }
+
+          .pontos_span {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .porc_consumo {
+        font-size: 0.9rem;
+
+        .consumo_span {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 `;
 

@@ -6,7 +6,7 @@ import btn_seta from '@/assets/login/btn_right.png'
 import logo_certa from '@/assets/logo_certa.png'
 import { DivCadastro, DivCadastroDir, DivCadastroEsq } from '@/styles/styled'
 import Image from 'next/image'
-import { UsuarioProps } from '@/types'
+import { CadastroProps, UsuarioProps } from '@/types'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { AuthContext } from '@/context'
@@ -17,16 +17,29 @@ export default function Cadastro() {
 	const navigate = useRouter()
 	const { loginContext } = useContext(AuthContext);
 
-	// const [error, setError] = useState<string | null>(null)
-
-	const [cadastro, setCadastro] = useState<UsuarioProps>(
+	// const [usuario, setUsuario] = useState<UsuarioProps>(
+	// 	{
+	// 		"cep": "",
+	// 		"data_nascimento": "" ,
+	// 		"data_registro": "",
+	// 		"email": "string",
+	// 		"id_usuario": 0,
+	// 		"nick_name": "",
+	// 		"nome": "",
+	// 		"porc_atual": 0,
+	// 		"quant_pontos": 0,
+	// 		"senha": "",
+	// 	}
+	// )
+	
+	const [cadastro, setCadastro] = useState<CadastroProps>(
 		{
-			email: '',
-			senha: '',
-			nick_name: '',
-			data_nascimento: '',
-			cep: '',
-			nome: '',
+			"cep": "",
+			"data_nascimento": "",
+			"email": "",
+			"nick_name": "",
+			"nome": "",
+			"senha": ""
 		}
 	)
 	
@@ -34,6 +47,10 @@ export default function Cadastro() {
 		const {name, value} = e.target
 		setCadastro({...cadastro, [name]:value})
 	}
+	
+
+	const [error, setError] = useState<string | null>(null)
+
 
 	const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) =>{
 		e.preventDefault()
@@ -43,10 +60,9 @@ export default function Cadastro() {
 			headers: {"Content-Type" : "application/json"},
 			body: JSON.stringify(cadastro),
 		}
-
+		console.log(cadastro)
 
 		try{
-			console.log(cabecalho.body)
 			const response = await fetch("http://localhost:8080/usuarioresource/cadastroUsuario", cabecalho)
 			if (response.ok){
 				const response2 = await fetch(`http://localhost:8080/usuarioresource/buscaIdUsuario/${cadastro.email}`);
@@ -63,12 +79,13 @@ export default function Cadastro() {
 					}
 				
 			}else{
-				// const errorData = await response.json()
-				// setError(errorData.message || "Ocorreu um erro ao realizar o cadastro!")
+				const error = await response.json()
+				const message = error.message
+				setError(message)
 		   	}
 		} catch(error){
 			console.error("Erro ao realizar cadastro", error);
-			// setError("Erro ao conectar com o servidor.");
+			setError("Erro ao conectar com o servidor.");
 	   	}
 	} 
 
@@ -123,6 +140,7 @@ export default function Cadastro() {
 				<button type='submit'>
 					Cadastrar
 				</button>
+				{error && <p className='texto_erro' style={{color: "red"}}>{error}</p>}
 			</form>
 		</DivCadastroDir>
 	</DivCadastro>
