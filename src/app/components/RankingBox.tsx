@@ -11,13 +11,6 @@ import { RankingBoxDiv } from "@/styles/styled";
 export default function RankingBox() {
     const medalhas = [med_ouro, med_prata, med_bronze, med_verde];
 
-    const [rankeado, setRankeado] = useState({
-        nick_name: "",
-        foto: pic_placeholder.src,
-        pontuacao: 0,
-        porc_consumo: 0,
-    });
-
     const [rankeados, setRankeados] = useState<RankingProps[]>([
         {
             nick_name: "",
@@ -44,7 +37,7 @@ export default function RankingBox() {
                     );
                 }
             } catch (error) {
-                alert("Falha ao consultar Rankings na API");
+                alert(`Falha ao consultar Rankings na API + ${error}`);
             }
         };
         fetchRankeados();
@@ -74,7 +67,7 @@ export default function RankingBox() {
                                 height={50}
                             />
                             <div className="nome_pontos">
-                                <p>{rankeado.nick_name}</p>
+                                <p className="nome_usuario">{rankeado.nick_name}</p>
                                 <p>
                                     <span className="pontos_span">{rankeado.pontuacao}</span> pontos
                                 </p>
