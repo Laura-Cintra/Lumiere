@@ -2090,6 +2090,7 @@ export const ModalQuizStyle = styled.div<{ open: boolean }>`
   background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
   transition: background-color 0.3s ease;
   visibility: ${({ open }) => (open ? "visible" : "hidden")};
+  z-index: 1000;
 
   @media(max-width: 480px) {
     h1 {
@@ -2277,6 +2278,7 @@ export const ModalContent = styled.div<{ open: boolean }>`
     width: 90%;
     max-width: 600px;
     height: 300px; 
+    z-index: 1000;
     h3{
       margin-bottom: 20px;
       
@@ -2296,4 +2298,5 @@ export const ModalOverlayQuiz = styled.div<{ open: boolean }>`
     background-color: ${({ open }) => (open ? "rgba(0, 0, 0, 0.2)" : "transparent")};
     transition: background-color 0.3s ease;
     visibility: ${({ open }) => (open ? "visible" : "hidden")};
+    z-index: 1000;
 `;

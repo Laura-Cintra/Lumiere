@@ -25,10 +25,11 @@ export default function RankingBox() {
     useEffect(() => {
         const fetchRankeados = async () => {
             try {
-                const response = await fetch(
-                    "http://localhost:8080/rankingresource/exibirRanking");
 
-                if (response.ok) {
+                const atualizar = await fetch("http://localhost:8080/rankingresource/inserirRanking")
+                
+                const response = await fetch("http://localhost:8080/rankingresource/exibirRanking");
+                if (response.ok && atualizar.ok) {
                     const dados = await response.json();
                     console.log(dados);
                     setRankeados(dados);
