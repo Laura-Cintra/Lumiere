@@ -7,6 +7,7 @@ export type ConteudoProps = {
     categoria: 'quiz' | 'dicas';
     descricao?: string;
     dica?: string;
+    onClick?: () => void;
 };
 
 export type RankingCardProps = {

@@ -1948,4 +1948,5 @@ export const RankingBoxDiv = styled.div`
             }
         }
     }
+
 `;
