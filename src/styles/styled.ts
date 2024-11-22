@@ -1905,81 +1905,83 @@ export const RankingBoxDiv = styled.div`
             }
         }
     }
-    
+`
+
 export const Overlay = styled.div<{ open: boolean }>`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: visibility 0s, opacity 0.5s linear;
-    opacity: ${props => (props.open ? 1 : 0)};
-    visibility: ${props => (props.open ? 'visible' : 'hidden')};
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: visibility 0s, opacity 0.5s linear;
+  opacity: ${props => (props.open ? 1 : 0)};
+  visibility: ${props => (props.open ? 'visible' : 'hidden')};
+  z-index: 1000;
 `;
 
 export const Content = styled.div<{ open: boolean }>`
-    background: white;
-    border-radius: 12px; 
-    padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
-    transform: scale(${props => (props.open ? 1 : 0.9)});
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: ${props => (props.open ? 1 : 0)};
-    z-index: 1001;
-    width: 90%; 
-    max-width: 500px; 
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(${props => (props.open ? 1 : 0.9)});
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: ${props => (props.open ? 1 : 0)};
+  z-index: 1001;
+  width: 90%;
+  max-width: 500px;
 `;
 
 export const CloseButton = styled.button`
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: gray;
-    transition: color 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: gray;
+  transition: color 0.3s;
 
-    &:hover {
-        color: darkred; 
-    }
+  &:hover {
+    color: darkred;
+  }
 `;
 
 export const ActionButton = styled.button`
-    background-color: green; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
 
-    &:hover {
-        background-color: darkgreen;
-    }
+  &:hover {
+    background-color: darkgreen;
+  }
 `;
 
 export const CancelButton = styled.button`
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 
-    &:hover {
-        background-color: darkred;
-    }
+  &:hover {
+    background-color: darkred;
+  }
+`;
 
 export const ModalQuizStyle = styled.div<{ open: boolean }>`
   position: fixed;
@@ -1991,46 +1993,46 @@ export const ModalQuizStyle = styled.div<{ open: boolean }>`
   transition: background-color 0.3s ease;
   visibility: ${({ open }) => (open ? "visible" : "hidden")};
 
-    @media (max-width: 480px) {
-        h1 {
-            font-size: 1.6rem;
-        }
-
-
-        .ranking_linha {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-
-            .medalha {
-                width: 30px;
-            }
-
-            .pic_nome_pontos {
-                flex-direction: column;
-
-                .foto {
-                    width: 45px;
-                    height: 45px;
-                }
-
-                .nome_pontos {
-                    .nome_usuario {
-                        font-size: 1rem;
-                    }
-
-                    .pontos_span {
-                        font-size: 0.9rem;
-                    }
-                }
-            }
-
-            .porc_consumo {
-                font-size: 0.9rem;
-
-                .consumo_span {
-                    font-size: 1rem;
-                }
-            }
-        }
+  @media(max-width: 480px) {
+    h1 {
+      font-size: 1.6rem;
     }
+
+    .ranking_linha {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .medalha {
+        width: 30px;
+      }
+
+      .pic_nome_pontos {
+        flex-direction: column;
+
+        .foto {
+          width: 45px;
+          height: 45px;
+        }
+
+        .nome_pontos {
+          .nome_usuario {
+            font-size: 1rem;
+          }
+
+          .pontos_span {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .porc_consumo {
+        font-size: 0.9rem;
+
+        .consumo_span {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+`;
