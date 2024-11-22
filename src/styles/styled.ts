@@ -1801,3 +1801,78 @@ export const RankingBoxDiv = styled.div`
     }
 `
 
+export const Overlay = styled.div<{ open: boolean }>`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: visibility 0s, opacity 0.5s linear;
+    opacity: ${props => (props.open ? 1 : 0)};
+    visibility: ${props => (props.open ? 'visible' : 'hidden')};
+    z-index: 1000;
+`;
+
+export const Content = styled.div<{ open: boolean }>`
+    background: white;
+    border-radius: 12px; 
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+    transform: scale(${props => (props.open ? 1 : 0.9)});
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: ${props => (props.open ? 1 : 0)};
+    z-index: 1001;
+    width: 90%; 
+    max-width: 500px; 
+`;
+
+export const CloseButton = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: gray;
+    transition: color 0.3s;
+
+    &:hover {
+        color: darkred; 
+    }
+`;
+
+export const ActionButton = styled.button`
+    background-color: green; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: darkgreen;
+    }
+`;
+
+export const CancelButton = styled.button`
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: darkred;
+    }
+`;

@@ -10,6 +10,7 @@ import user_foto from "@/assets/user.png"
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context";
 import { FotoProps, UsuarioProps } from "@/types";
+import Modal from "./Modal";
 
 
 export default function DadosUser(){
@@ -32,6 +33,31 @@ export default function DadosUser(){
     const dataString = usuario.data_registro
     const dataRegistro = new Date(dataString)
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
+
+    const handleDeleteAccount = async () => {
+        try{
+            const cabecalho = {
+                method : 'DELETE',
+            }
+
+            const response = await fetch(`http://localhost:8080/usuarioresource/deletarUsuario/${user?.id_usuario}`, cabecalho)
+            if (response.ok) {
+                alert("Conta excluída!")
+                console.log("Conta excluída!");
+            }else {
+                alert("Falha ao excluir a conta")
+                console.log(response.statusText)
+            }
+            
+        }catch (error){
+            console.log("Error: " + error)
+        }
+        closeModal();
+    };
+
     useEffect(() => {
         const fetchUsuario = async () => {
             try {
@@ -41,7 +67,6 @@ export default function DadosUser(){
                     const data = await response.json();
                     setUsuario(data);
                     console.log("Informações buscadas da base com sucesso!")
-
                     const response2 = await fetch(`http://localhost:8080/usuarioresource/exibirFoto/${usuario.email}`) 
                     if (response2.ok) {
                         const data2 = await response2.json()
@@ -65,8 +90,7 @@ export default function DadosUser(){
     
     return(
         <DadosUserStyle>
-
-            <button type="submit"><FaRegTrashAlt className="icon-deletar" title="Excluir a conta"/></button>
+            <button type="submit" onClick={openModal}><FaRegTrashAlt className="icon-deletar" title="Excluir a conta"/></button>
             <div className="upload">
                 <Image src={foto.foto ? foto.foto : user_foto} alt="Foto do perfil" width={20} height={20}/>
                 <div className="round">
@@ -83,7 +107,13 @@ export default function DadosUser(){
                 <p>{usuario.porc_atual}% de consumo</p>
                 <p>Desde {dataRegistro.toLocaleDateString()}</p>
             </div>
-        </DadosUserStyle>
 
+            <Modal open={isModalOpen} onClose={closeModal} onAction={handleDeleteAccount}>
+                <h2>Confirmar exclusão?</h2>
+                <p>Excluir conta: {usuario.nick_name}</p>
+                <p>Esta ação não pode ser desfeita.</p>
+            </Modal>
+        </DadosUserStyle>
+        
     )
 }
