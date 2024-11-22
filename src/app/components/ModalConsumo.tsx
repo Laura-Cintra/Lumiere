@@ -1,21 +1,21 @@
+"use client"
+
 import React, { useState, useContext } from "react";
 import conta from "@/assets/conta.png";
-import {
-  ModalContainer,
-  ModalOverlay,
-  NavButton,
-  SetasContainer,
-} from "@/styles/styled";
+import { ModalContainer, ModalOverlay, NavButton, SetasContainer } from "@/styles/styled";
 import { ModalConsumoProps } from "@/types";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { AuthContext } from "@/context";
+import { useRouter } from "next/navigation";
 
 export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
   const [currentModalIndex, setCurrentModalIndex] = useState(0);
   const [consumoData, setConsumoData] = useState(
     months.map(() => ({ kwh: "", valor: "", imagem: null as File | null }))
   );
+
+  const navigate = useRouter();
 
   const { user } = useContext(AuthContext);
 
@@ -39,55 +39,76 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
   };
 
   const handleSubmit = async () => {
-    // Verifica se o idUsuario está disponível
     if (!user || !user.id_usuario) {
       console.error("Erro: id do usuário não disponível.");
       alert("Erro: ID do usuário não encontrado.");
-      return; // Não prossegue com o envio
+      return;
     }
 
     const dataToSend = consumoData.map((data, index) => ({
-      dataConsumo: months[index],
+      dataConsumo: months[index].value, // Usa o valor formatado "YYYY-MM"
       consumoKwh: parseInt(data.kwh || "0", 10),
       custoConta: parseFloat(data.valor.replace(",", ".") || "0"),
-      idUsuario: user.id_usuario, // Agora garantido que o id_usuario não será null
+      idUsuario: user.id_usuario,
     }));
 
-    console.log("Iniciando envio de consumos:", dataToSend);
+    const errors: string[] = []; // Para acumular erros
 
-    dataToSend.forEach(async (consumo, index) => {
-      try {
-        const response = await fetch(
-          "http://localhost:8080/consumoresource/inserirNovoConsumo",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(consumo),
-          }
-        );
-
-        if (response.ok) {
-          console.log(`Consumo do mês ${months[index]} enviado com sucesso!`);
-        } else {
-          const errorData = await response.json().catch(() => null);
-          console.error(
-            `Erro ao enviar consumo do mês ${months[index]}:`,
-            errorData || response.statusText
+  try {
+    await Promise.all(
+      dataToSend.map(async (consumo, index) => {
+        try {
+          const response = await fetch(
+            "http://localhost:8080/consumoresource/inserirNovoConsumo",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(consumo),
+            }
           );
-        }
-      } catch (error) {
-        console.error(
-          `Erro ao conectar ao servidor ao enviar o mês ${months[index]}:`,
-          error
-        );
-      }
-    });
 
-    console.log("Processo de envio finalizado.");
-    onClose(); // Fecha o modal ao final do envio.
-  };
+          if (!response.ok) {
+            const errorData = await response.json();
+            errors.push(`Erro no mês ${months[index].name}: ${errorData.message}`);
+          } else {
+            console.log(`Consumo do mês ${months[index].name} enviado com sucesso!`);
+          }
+        } catch (error) {
+          errors.push(`Erro ao enviar o mês ${months[index].name}: ${error}`);
+        }
+      })
+    );
+
+    if (errors.length > 0) {
+      alert(`Alguns meses não foram cadastrados:\n${errors.join("\n")}`);
+    } else {
+      alert("Todos os meses foram cadastrados com sucesso!");
+      const response_rank = await fetch(
+        `http://localhost:8080/usuarioresource/atualizaPorcentagemStatus/${user.id_usuario}`,
+        {
+          method: "PUT"
+        }
+      );
+      const insere_rank = await fetch(
+        `http://localhost:8080/rankingresource/inserirRanking`
+      );
+      if(response_rank.ok && insere_rank.ok){
+        console.log("Ranking atualizado com sucesso!")
+      }
+      else{
+        console.log("Erro ao atualizar ranking")
+      }
+      navigate.push('/');
+    }
+  } catch (error) {
+    console.error("Erro geral ao enviar os dados de consumo:", error);
+    alert("Erro ao processar as requisições. Tente novamente.");
+  } finally {
+    onClose();
+  }
+};
 
   return (
     <ModalOverlay>
@@ -97,10 +118,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
         </button>
         <div className="titulo">
           <Image src={conta} alt="ícone fatura" width={50} height={50} />
-          <h2>
-            Cadastrando o consumo do mês de{" "}
-            <span>{months[currentModalIndex].toUpperCase()}</span>
-          </h2>
+          <h2>Cadastrando o consumo do mês de <span>{months[currentModalIndex].name.toUpperCase()}</span></h2>
         </div>
         <form>
           <label>KWH total do mês:</label>
@@ -142,10 +160,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
               <p>Nenhum arquivo selecionado.</p>
             )}
           </div>
-          <p>
-            obs: essa imagem servirá apenas para autenticação. Depois ela será
-            descartada.
-          </p>
+          <p>obs: essa imagem servirá apenas para autenticação. Depois ela será descartada.</p>
         </form>
 
         <SetasContainer>
@@ -162,9 +177,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
             type="button"
             className="cadastrar-button"
             onClick={handleSubmit}
-          >
-            Cadastrar
-          </button>
+          >Cadastrar</button>
         )}
       </ModalContainer>
     </ModalOverlay>
