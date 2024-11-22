@@ -1166,6 +1166,10 @@ export const DivCadastroDir = styled.div`
         margin-right: 10px;
     }
 
+    .texto_erro {
+        text-align: center;
+    }
+
     button {
         margin: 0 auto;
         border: 2px solid #E3BD3C;

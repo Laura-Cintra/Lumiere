@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 import { AuthContext } from "@/context";
 
 export default function Login() {
-
+  const [error, setError] = useState<string | null>(null)
   const navigate = useRouter();
   const { loginContext } = useContext(AuthContext);
 
@@ -49,13 +49,20 @@ export default function Login() {
             };
             loginContext(user); // Atualiza o contexto com os dados do usuário
             navigate.push("/"); // Redireciona para a página inicial após o login
+          }else { 
+            const error = await response3.json()
+            const message = error.message
+            setError(message)
           }
         }
       } else {
-        alert("Falha ao realizar o Login! Verifique se o e-mail e senha estão corretos.");
+        const error = await response.json()
+        const message = error.message
+        setError(message)
       }
     } catch (error) {
       console.error("Erro ao realizar login:", error);
+      setError("Falha ao conectar com o banco de dados.")
     }
   };
 
@@ -96,6 +103,7 @@ export default function Login() {
           <Link className="cadastro_link" href={"/cadastro"}>
             Ainda não tem uma conta? Cadastre-se
           </Link>
+          {error && <p className='texto_erro' style={{color: "red"}}>{error}</p>}
         </form>
       </div>
     </DivLogin>
