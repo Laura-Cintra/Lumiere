@@ -26,8 +26,6 @@ Com uma interface interativa e elementos de gamificação, o projeto educa os us
 
 ## Funcionalidades
 
-## Funcionalidades
-
 - **Dashboard de Consumo**:  
   Acompanhe seu histórico de consumo de energia.  
   - **Cadastro do Consumo**: Insira os dados de consumo dos últimos 3 meses ao criar sua conta.  
