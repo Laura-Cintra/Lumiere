@@ -1,11 +1,9 @@
 "use client";
 
-
 import { HeaderStyle } from "@/styles/styled"; // Importa o estilo
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useRef, useState } from "react";
-
 
 import logocerta from "@/assets/logo_certa.png";
 import person from "@/assets/person.png";
@@ -24,7 +22,6 @@ export default function Cabecalho() {
     const { user } = useContext(AuthContext);
     const [pontuacao, setPontuacao] = useState<number>(0)
 
-
     const togglePerfil = () => {
         setCardPerfil(!cardPerfil); // Alterna o estado do card de perfil
     };
@@ -35,14 +32,12 @@ export default function Cabecalho() {
         document.body.style.overflow = menu ? "auto" : "hidden"; // Desativa o scroll do body quando o menu está aberto
     };
 
-
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     const handleOpenModal = () => {
         setIsModalOpen(true); // Abre o modal
     };
-
 
     const handleCloseModal = () => {
         setIsModalOpen(false); // Fecha o modal
@@ -77,7 +72,13 @@ export default function Cabecalho() {
         }
     }, [user]);  
     
-
+    const getCurrentMonth = () => {
+        const now = new Date();
+        const monthName = now.toLocaleString('default', { month: 'long' });  // Nome completo do mês
+        const monthValue = now.toISOString().slice(0, 7);  // Formato YYYY-MM
+        
+        return [{ name: monthName, value: monthValue }];
+    };    
 
     return (
         <div>
@@ -139,15 +140,14 @@ export default function Cabecalho() {
                     </div>
                 )}
 
-
                 {isModalOpen && (
                     <ModalNovoConsumo
-                        months={["novembro"]}  // Passando o mês atual para o modal
-                        onClose={handleCloseModal}  // Passando a função para fechar o modal
+                        months={getCurrentMonth()}
+                        onClose={handleCloseModal}
                     />
                 )}
             </HeaderStyle>
-            {cardPerfil && <CardPerfilResumo />} {/* Renderiza o CardPerfilResumo apenas se cardPerfil for true */}
+            {cardPerfil && <CardPerfilResumo />}
         </div>
     );
 }

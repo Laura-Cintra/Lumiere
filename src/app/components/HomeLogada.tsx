@@ -29,7 +29,7 @@ export default function HomeDashboard() {
 
       {isModalOpen && (
         <ModalMensagem
-          months={["setembro", "outubro", "novembro"]}
+          months={[{ name: "", value: "" }]}
           onClose={handleCloseModal}
         />
       )}

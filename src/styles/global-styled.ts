@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex-direction: column;
         scroll-behavior: smooth;
-        font-family: 'Chakra Petch', sans-serif;
+        font-family: "Chakra Petch", sans-serif;
     }
 
     main {
