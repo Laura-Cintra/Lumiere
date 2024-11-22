@@ -11,8 +11,9 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, onAction, children }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
                     {onAction && <ActionButton onClick={onAction}>Confirmar</ActionButton>}
                     <CancelButton onClick={onClose}>Cancelar</CancelButton>
+                    
                 </div>
-				</Content>
+            </Content>
         </Overlay>
     );
 }

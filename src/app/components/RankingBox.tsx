@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import med_ouro from "@/assets/ranking/medalha_ouro.png";
 import med_prata from "@/assets/ranking/medalha_prata.png";
 import med_bronze from "@/assets/ranking/medalha_bronze.png";
@@ -8,8 +8,12 @@ import pic_placeholder from "@/assets/ranking/profile_placeholder.png";
 import Image from "next/image";
 import { RankingProps } from "@/types";
 import { RankingBoxDiv } from "@/styles/styled";
+import { AuthContext } from "@/context";
 export default function RankingBox() {
     const medalhas = [med_ouro, med_prata, med_bronze, med_verde];
+
+    const {user} = useContext(AuthContext);
+
 
     const [rankeados, setRankeados] = useState<RankingProps[]>([
         {
