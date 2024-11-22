@@ -1,6 +1,6 @@
 # Lumière - Plataforma Gamificada de Consumo Consciente
 
-![Logo do Projeto](src/assets/logo_certa.png)
+<img src="src/assets/logo_certa.png" alt="Logo do Projeto" width="110" height="120">
 
 *Iluminando um futuro sustentável*
 
