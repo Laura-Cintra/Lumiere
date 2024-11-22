@@ -1434,6 +1434,7 @@ export const FundoStyle = styled.div`
         width: 30px;
         height: 30px;
         color: white;
+        cursor: pointer;
     }
 `
 
@@ -1616,6 +1617,15 @@ input[type=file]::-webkit-file-upload-button{
         height: 50px;
         padding: 20px 0;
         
+    }
+}
+
+.icon-deletar {
+    cursor: pointer;
+
+    &:hover {
+        border: 1px solid black;
+        padding: 2px;
     }
 }
 `;

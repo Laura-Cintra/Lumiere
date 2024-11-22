@@ -6,8 +6,7 @@ import { RankingDiv } from '@/styles/styled'
 export default function Ranking() {
   return (
 	<RankingDiv>
-		<RankingBox>
-		</RankingBox>
+		<RankingBox/>
 		<h2>Como funciona: </h2>
 		<ul className='ul_ranking'>
 			<li><span>✧</span> Melhoria no consumo: Quanto mais você reduzir em comparação ao mês anterior, maior será sua pontuação.</li>

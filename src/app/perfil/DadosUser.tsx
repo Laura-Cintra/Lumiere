@@ -14,7 +14,9 @@ import Modal from "./Modal";
 
 
 export default function DadosUser(){
+
     const {user} = useContext(AuthContext)
+    const [error, setError] = useState<string | null>(null)
     const [foto, setFoto] = useState<FotoProps>({
         "foto" : user_foto.src
     });
@@ -35,7 +37,7 @@ export default function DadosUser(){
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const closeModal = () =>[setIsModalOpen(false), setError(null)];
 
     const handleDeleteAccount = async () => {
         try{
@@ -47,15 +49,18 @@ export default function DadosUser(){
             if (response.ok) {
                 alert("Conta excluída!")
                 console.log("Conta excluída!");
+                closeModal();
+                setError(null)
             }else {
-                alert("Falha ao excluir a conta")
+                const error = await response.json()
+                const message = error.message
+                setError(message)
                 console.log(response.statusText)
             }
             
         }catch (error){
             console.log("Error: " + error)
         }
-        closeModal();
     };
 
     useEffect(() => {
@@ -90,9 +95,9 @@ export default function DadosUser(){
     
     return(
         <DadosUserStyle>
-            <button type="submit" onClick={openModal}><FaRegTrashAlt className="icon-deletar" title="Excluir a conta"/></button>
+            <FaRegTrashAlt className="icon-deletar" title="Excluir a conta" onClick={openModal}/>
             <div className="upload">
-                <Image src={foto.foto ? foto.foto : user_foto} alt="Foto do perfil" width={20} height={20}/>
+                <Image src={foto.foto ? foto.foto : user_foto} alt="Foto do perfil" width={140} height={140}/>
                 <div className="round">
                     <input type="file"/>
                     <IoCameraOutline />
@@ -112,6 +117,7 @@ export default function DadosUser(){
                 <h2>Confirmar exclusão?</h2>
                 <p>Excluir conta: {usuario.nick_name}</p>
                 <p>Esta ação não pode ser desfeita.</p>
+                {error && <p className='texto_erro' style={{color: "red"}}>{error}</p>}
             </Modal>
         </DadosUserStyle>
         
