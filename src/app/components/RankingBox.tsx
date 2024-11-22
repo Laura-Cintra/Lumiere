@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import med_ouro from "@/assets/ranking/medalha_ouro.png";
 import med_prata from "@/assets/ranking/medalha_prata.png";
 import med_bronze from "@/assets/ranking/medalha_bronze.png";
