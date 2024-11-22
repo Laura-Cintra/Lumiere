@@ -1694,7 +1694,8 @@ export const CardPerfilStyle = styled.div<RoundStyleColor>`
         text-align: center;
     }
     .infos-user h2{
-        font-size: 30px;
+        font-size: 22px;
+        padding: 5px;
     }
     .infos-user p{
         font-size: 14px;
