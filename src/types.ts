@@ -75,6 +75,7 @@ export type RankingProps = {
     foto: string | StaticImageData; 
     pontuacao: number;
     porc_consumo: number;
+    posicao: number
 }
   
 
