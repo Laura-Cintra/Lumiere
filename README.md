@@ -81,15 +81,8 @@ Para rodar o Lumière em sua máquina, é necessário rodar a nossa api:
      - No seu IDE, clique com o botão direito sobre o arquivo `Main.java` e selecione Run 'Main.main()' para rodar o servidor backend.
      - O servidor estará disponível em http://localhost:8080/.
 
-## Estrutura do Projeto
-
-├── frontend                  # Código do frontend
-    ├── src                   # Código-fonte da aplicação Next.JS
-    ├── README.md             # Este arquivo       
-    └── package.json          # Dependências do frontend
-
 ## Contribuição
 
     RM: 558843 Laura de Oliveira Cintra
     RM: 558832 Maria Eduarda Alves da Paixão
-    RM  554456 Vinícius Saes de Souza
+    RM: 554456 Vinícius Saes de Souza
