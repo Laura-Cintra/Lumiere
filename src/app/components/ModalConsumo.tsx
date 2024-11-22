@@ -1,11 +1,6 @@
 import React, { useState, useContext } from "react";
 import conta from "@/assets/conta.png";
-import {
-  ModalContainer,
-  ModalOverlay,
-  NavButton,
-  SetasContainer,
-} from "@/styles/styled";
+import { ModalContainer, ModalOverlay, NavButton, SetasContainer } from "@/styles/styled";
 import { ModalConsumoProps } from "@/types";
 import Image from "next/image";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -39,21 +34,18 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
   };
 
   const handleSubmit = async () => {
-    // Verifica se o idUsuario está disponível
     if (!user || !user.id_usuario) {
       console.error("Erro: id do usuário não disponível.");
       alert("Erro: ID do usuário não encontrado.");
-      return; // Não prossegue com o envio
+      return;
     }
 
     const dataToSend = consumoData.map((data, index) => ({
-      dataConsumo: months[index],
+      dataConsumo: months[index].value, // Usa o valor formatado "YYYY-MM"
       consumoKwh: parseInt(data.kwh || "0", 10),
       custoConta: parseFloat(data.valor.replace(",", ".") || "0"),
-      idUsuario: user.id_usuario, // Agora garantido que o id_usuario não será null
+      idUsuario: user.id_usuario,
     }));
-
-    console.log("Iniciando envio de consumos:", dataToSend);
 
     dataToSend.forEach(async (consumo, index) => {
       try {
@@ -69,24 +61,21 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
         );
 
         if (response.ok) {
-          console.log(`Consumo do mês ${months[index]} enviado com sucesso!`);
+          console.log(`Consumo do mês ${months[index].name} enviado com sucesso!`);
         } else {
           const errorData = await response.json().catch(() => null);
-          console.error(
-            `Erro ao enviar consumo do mês ${months[index]}:`,
-            errorData || response.statusText
-          );
+          console.error(`Erro ao enviar consumo do mês ${months[index].name}:`, errorData || response.statusText);
         }
       } catch (error) {
         console.error(
-          `Erro ao conectar ao servidor ao enviar o mês ${months[index]}:`,
+          `Erro ao conectar ao servidor ao enviar o mês ${months[index].name}:`,
           error
         );
       }
     });
 
-    console.log("Processo de envio finalizado.");
-    onClose(); // Fecha o modal ao final do envio.
+    alert("Meses cadastrados com sucesso!");
+    onClose();
   };
 
   return (
@@ -97,10 +86,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
         </button>
         <div className="titulo">
           <Image src={conta} alt="ícone fatura" width={50} height={50} />
-          <h2>
-            Cadastrando o consumo do mês de{" "}
-            <span>{months[currentModalIndex].toUpperCase()}</span>
-          </h2>
+          <h2>Cadastrando o consumo do mês de <span>{months[currentModalIndex].name.toUpperCase()}</span></h2>
         </div>
         <form>
           <label>KWH total do mês:</label>
@@ -142,10 +128,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
               <p>Nenhum arquivo selecionado.</p>
             )}
           </div>
-          <p>
-            obs: essa imagem servirá apenas para autenticação. Depois ela será
-            descartada.
-          </p>
+          <p>obs: essa imagem servirá apenas para autenticação. Depois ela será descartada.</p>
         </form>
 
         <SetasContainer>
@@ -162,9 +145,7 @@ export default function ModalConsumo({ months, onClose }: ModalConsumoProps) {
             type="button"
             className="cadastrar-button"
             onClick={handleSubmit}
-          >
-            Cadastrar
-          </button>
+          >Cadastrar</button>
         )}
       </ModalContainer>
     </ModalOverlay>
