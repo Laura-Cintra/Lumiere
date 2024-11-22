@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "apexcharts": "^3.54.1",
+    "firebase": "^11.0.2",
     "lumiere": "file:",
     "next": "14.2.13",
     "react": "^18",

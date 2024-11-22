@@ -1,52 +1,64 @@
-// "use client"
+"use client"
 
-// import { useEffect, useState } from "react";
-// import ModalQuiz from "../components/ModalQuiz";
-// import Image from "next/image";
-// import q1 from "@/assets/games/quiz1.png"
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { useState, useRef } from "react";
+import Image from "next/image";
+import { storage } from "@/firebase";
 
-// export default function Teste(){
-//     const [open, setOpen] = useState<boolean>(false)
+export default function Teste() {
+  const [imgURL, setImgURL] = useState<string>("");
+  const [progressPorcent, setProgressPorcent] = useState<number>(0);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-//     const [index, setIndex] = useState<number>(0)
-//     const [acertos, setAcertos] = useState<number>(0)
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-//     const resgatarPerguntas = async => {
-//         try {
-//             const response = await fetch("http://localhost:8080/quizresource/buscarPerguntas/1");
-//             const data = await response.json(); // Aguarde a Promise resolver
-//             const tamanho = data.length; // Obtenha o tamanho do array
-//             console.log("Dados:", data);
-//             console.log("Número de questões:", tamanho);
-//         } catch (error) {
-//             console.error("Erro ao buscar perguntas:", error);
-//         }
-//     }
-//     useEffect(({
-//         resgatar
-//     }, []))
+    const file = fileInputRef.current?.files?.[0]; // Referência ao input
+    if (!file) {
+      alert("Por favor, selecione um arquivo!");
+      return;
+    }
 
-//     return(
-//         <div>
-//         <button onClick={() => setOpen(true)}>aperte</button>
-//         <ModalQuiz open={open} onClose={() => setOpen(false)}>
-//             <main>
-//                 <div className="start">
-//                     <p>Titulo do game</p>
-//                     <Image src={q1} alt="Foto"/>
-//                     <button>Começar</button>
-//                 </div>
-//                 {/* <div className="content">
-//                     <span className="spnQtd"></span>
-//                     <span className="question"></span>
-//                     <div className="answers"></div>
-//                 </div>
-//                 <div className="finish">
-//                 <span></span>
-//                 <button>Reiniciar</button>
-//                 </div> */}
-//   </main>
-//         </ModalQuiz>
-//         </div>
-//     )
-// }
+    const storageRef = ref(storage, `images/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgressPorcent(progress);
+      },
+      (error) => {
+        alert("Erro no upload: " + error.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImgURL(downloadURL);
+        });
+      }
+    );
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <form onSubmit={handleSubmit}>
+          <input type="file" ref={fileInputRef} />
+          <button type="submit">Enviar</button>
+        </form>
+        {!imgURL && <p>{progressPorcent}%</p>}
+        {imgURL && (
+          <Image
+            src={imgURL}
+            alt="Imagem enviada"
+            height={200}
+            width={200}
+            unoptimized
+          />
+        )}
+      </header>
+    </div>
+  );
+}

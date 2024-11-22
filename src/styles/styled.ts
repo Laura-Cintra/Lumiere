@@ -1590,6 +1590,10 @@ input[type=file]::-webkit-file-upload-button{
     cursor: pointer;
 }
 
+.alterar-foto{
+    margin-top: 10px;
+}
+
 .informacoes{
     text-align: center;
     h2{
