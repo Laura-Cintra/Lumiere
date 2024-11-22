@@ -21,12 +21,16 @@ export default function Cadastro() {
 
 	const [cadastro, setCadastro] = useState<UsuarioProps>(
 		{
-			email: '',
-			senha: '',
-			nick_name: '',
-			data_nascimento: '',
-			cep: '',
-			nome: '',
+			"cep": "",
+			"data_nascimento": "" ,
+			"data_registro": "",
+			"email": "string",
+			"id_usuario": 0,
+			"nick_name": "",
+			"nome": "",
+			"porc_atual": 0,
+			"quant_pontos": 0,
+			"senha": "",
 		}
 	)
 	
@@ -46,7 +50,6 @@ export default function Cadastro() {
 
 
 		try{
-			console.log(cabecalho.body)
 			const response = await fetch("http://localhost:8080/usuarioresource/cadastroUsuario", cabecalho)
 			if (response.ok){
 				const response2 = await fetch(`http://localhost:8080/usuarioresource/buscaIdUsuario/${cadastro.email}`);

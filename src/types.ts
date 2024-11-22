@@ -26,12 +26,20 @@ export type ModalConsumoProps = {
 };
 
 export type UsuarioProps = {
-    email: string;
-    senha: string;
-    nick_name: string;
-    data_nascimento: string;
-    cep: string;
-    nome: string;
+    cep: string,
+    data_nascimento: string,
+    data_registro: string,
+    email: string,
+    id_usuario: number,
+    nick_name: string,
+    nome: string,
+    porc_atual: number,
+    quant_pontos: number,
+    senha: string,
+}
+
+export type FotoProps = {
+    foto: string
 }
 
 export type LoginProps = {
