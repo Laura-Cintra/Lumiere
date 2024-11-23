@@ -63,11 +63,11 @@ Com uma interface interativa e elementos de gamificação, o projeto educa os us
 
 Para rodar o Lumière em sua máquina, é necessário rodar a nossa api:
 
-- [API JAVA](https://github.com/) configurado e em funcionamento
+- [API JAVA](https://github.com/Laura-Cintra/Lumiere-API-Java) configurado e em funcionamento
 
 ### Passo a Passo
 
-1. Acesse [nosso site](https://lumiere.vercel.app/)
+1. Acesse [nosso site](https://lumiere-gs.vercel.app/)
 
 2. **Configuração do Backend**:
 
