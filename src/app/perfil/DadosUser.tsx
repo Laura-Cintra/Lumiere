@@ -12,6 +12,7 @@ import { UsuarioProps } from "@/types";
 import Modal from "./Modal";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "@/firebase";
+import { useRouter } from "next/navigation";
 
 
 
@@ -38,6 +39,7 @@ export default function DadosUser() {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => [setIsModalOpen(false), setError(null)];
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useRouter()
 
   // Fetch dados do usuário e da foto
   useEffect(() => {
@@ -98,6 +100,8 @@ export default function DadosUser() {
       if (response.ok) {
         alert("Conta excluída!");
         console.log("Conta excluída!");
+        navigate.refresh()
+        navigate.push("/")
         closeModal();
         setError(null);
       } else {
